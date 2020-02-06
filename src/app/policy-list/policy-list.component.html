@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <th>Number</th>
+        <th>Created At</th>
+        <th>Expire At</th>
+        <th>Amount</th>
+    </thead>
+    <tbody>
+        <td>
+            <button (click)="printValues()">print</button>
+        </td>
+        <td>
+            <button (click)="deletar()">delete</button>
+        </td>
+        <tr *ngFor="let policy of policies">
+
+            <td>{{policy.id}}</td>
+            <td>{{policy.creationDate}}</td>
+            <td>{{policy.expireDate}}</td>
+            <td>{{policy.policyAmount}}</td>
+            <td>
+                <button (click)="delete(policy.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
