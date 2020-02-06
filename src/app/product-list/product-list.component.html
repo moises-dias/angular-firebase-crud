@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <th>Number</th>
+        <th>Created At</th>
+        <th>Expire At</th>
+        <th>Amount</th>
+    </thead>
+    <tbody>
+        <td>
+            <button (click)="add()">Delete</button>
+        </td>
+        <tr *ngFor="let product of productsList">
+
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.expireDate}}</td>
+            <td>{{product.productAmount}}</td>
+        </tr>
+    </tbody>
+</table>

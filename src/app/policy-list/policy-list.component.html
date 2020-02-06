@@ -6,12 +6,6 @@
         <th>Amount</th>
     </thead>
     <tbody>
-        <td>
-            <button (click)="printValues()">print</button>
-        </td>
-        <td>
-            <button (click)="deletar()">delete</button>
-        </td>
         <tr *ngFor="let policy of policies">
 
             <td>{{policy.id}}</td>
@@ -19,7 +13,7 @@
             <td>{{policy.expireDate}}</td>
             <td>{{policy.policyAmount}}</td>
             <td>
-                <button (click)="delete(policy.id)">Delete</button>
+                <!-- <button (click)="delete(policy.id)">Delete</button> -->
             </td>
         </tr>
     </tbody>
