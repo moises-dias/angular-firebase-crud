@@ -1,9 +1,10 @@
 <table>
     <thead>
-        <th>Number</th>
-        <th>Created At</th>
-        <th>Expire At</th>
-        <th>Amount</th>
+        <th>id</th>
+        <th>name</th>
+        <th>purchaserName</th>
+        <th>saleValue</th>
+        <th>categories</th>
     </thead>
     <tbody>
         <td>
@@ -13,8 +14,30 @@
 
             <td>{{product.id}}</td>
             <td>{{product.name}}</td>
-            <td>{{product.expireDate}}</td>
-            <td>{{product.productAmount}}</td>
+            <td>{{product.purchaserName}}</td>
+            <td>{{product.saleValue}}</td>
+            <td>{{product.categories}}</td>
         </tr>
     </tbody>
 </table>
+
+
+<!-- export class Product {
+
+    // product characteristics
+    id: string;
+    name: string;
+    categories: string[]; //categorys or tags
+
+    //purchaser
+    purchaseValue: number;
+    purchaseDate: Date;
+    purchaserName: string;
+    purchaserContacts: string[];
+
+    //sales
+    saleValue: number;
+    saleDate: Date;
+    salePlatforms: string[];
+    sold: boolean;
+} -->

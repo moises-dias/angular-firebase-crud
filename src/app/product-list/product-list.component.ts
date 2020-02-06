@@ -37,26 +37,19 @@ export class ProductListComponent implements OnInit {
 
   add() {
     this.create(
-
       {
-    
-        // product characteristics
-        id: 'string',
-        name: 'string',
-        categorys: null, //categorys or tags
-    
-        //purchaser
-        purchaseValue: null,
-        purchaseDate: null,
-        purchaserName: null,
-        purchaserContacts: null,
-    
-        //sales
-        saleValue: null,
-        saleDate: null,
-        salePlatforms: null,
-        sold: null
-    }
+        id: 'id',
+        name: 'controle',
+        categories: ['ps1', 'xbox', 'perifericos'],
+        purchaseValue: 123,
+        purchaseDate: new Date,
+        purchaserName: "paulo b.",
+        purchaserContacts: ["41 92929292", "paulob@gmail.com"],
+        saleValue: 456,
+        saleDate: new Date,
+        salePlatforms: ["olx", "mercado livre"],
+        sold: true
+      }
 
     )
   }

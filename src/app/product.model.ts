@@ -1,9 +1,9 @@
 export class Product {
-    
+
     // product characteristics
     id: string;
     name: string;
-    categorys: string[]; //categorys or tags
+    categories: string[]; //categorys or tags
 
     //purchaser
     purchaseValue: number;
