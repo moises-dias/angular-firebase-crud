@@ -4,16 +4,17 @@ export class Product {
     id: string;
     name: string;
     categories: string[]; //categorys or tags
+    details: string;
 
     //purchaser
     purchaseValue: number;
-    purchaseDate: Date;
+    purchaseDate: string;
     purchaserName: string;
     purchaserContacts: string[];
 
     //sales
     saleValue: number;
-    saleDate: Date;
+    saleDate: string;
     salePlatforms: string[];
     sold: boolean;
 }

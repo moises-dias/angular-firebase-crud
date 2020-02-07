@@ -1,43 +1,123 @@
+<!-- id: product.id,
+name: product.name,
+categories: product.categories.split(','),
+purchaseValue: product.purchaseValue,
+purchaseDate: product.purchaseDate,
+purchaserName: product.purchaserName,
+purchaserContacts: product.purchaserContacts.split(','),
+saleValue: product.saleValue,
+saleDate: product.saleDate,
+salePlatforms: product.salePlatforms.split(','),
+sold: product.sold,
+details: product.details -->
+
+
 <table>
     <thead>
-        <th>id</th>
+        <!-- <th>id</th> -->
         <th>name</th>
-        <th>purchaserName</th>
-        <th>saleValue</th>
         <th>categories</th>
+        <th>purchaseValue</th>
+        <th>purchaseDate</th>
+        <th>purchaserName</th>
+        <th>purchaserContacts</th>
+        <th>saleValue</th>
+        <th>saleDate</th>
+        <th>salePlatforms</th>
+        <th>details</th>
     </thead>
     <tbody>
-        <td>
+        <!-- <td>
             <button (click)="add()">Delete</button>
-        </td>
+        </td> -->
         <tr *ngFor="let product of productsList">
 
-            <td>{{product.id}}</td>
+            <!-- <td>{{product.id}}</td> -->
             <td>{{product.name}}</td>
-            <td>{{product.purchaserName}}</td>
-            <td>{{product.saleValue}}</td>
             <td>{{product.categories}}</td>
+            <td>{{product.purchaseValue}}</td>
+            <td>{{product.purchaseDate}}</td>
+            <td>{{product.purchaserName}}</td>
+            <td>{{product.purchaserContacts}}</td>
+            <td>{{product.saleValue}}</td>
+            <td>{{product.saleDate}}</td>
+            <td>{{product.salePlatforms}}</td>
+            <td>{{product.details}}</td>
+            <td>
+                <button (click)="delete(product.id)">Delete</button>
+            </td>
         </tr>
     </tbody>
 </table>
 
 
-<!-- export class Product {
 
-    // product characteristics
-    id: string;
-    name: string;
-    categories: string[]; //categorys or tags
+<form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
 
-    //purchaser
-    purchaseValue: number;
-    purchaseDate: Date;
-    purchaserName: string;
-    purchaserContacts: string[];
+    <!-- <div>
+        <label for="id">id</label>
+        <input id="id" type="text" formControlName="id">
+    </div> -->
+    <div>
+        <label for="name">name</label>
+        <input id="name" type="text" formControlName="name">
+    </div>
+    <div>
+        <label for="categories">categories</label>
+        <input id="categories" type="text" formControlName="categories">
+    </div>
+    <div>
+        <label for="purchaseValue">purchaseValue</label>
+        <input id="purchaseValue" type="text" formControlName="purchaseValue">
+    </div>
+    <div>
+        <label for="purchaseDate">purchaseDate</label>
+        <input id="purchaseDate" type="text" formControlName="purchaseDate">
+    </div>
+    <div>
+        <label for="purchaserName">purchaserName</label>
+        <input id="purchaserName" type="text" formControlName="purchaserName">
+    </div>
+    <div>
+        <label for="purchaserContacts">purchaserContacts</label>
+        <input id="purchaserContacts" type="text" formControlName="purchaserContacts">
+    </div>
+    <div>
+        <label for="saleValue">saleValue</label>
+        <input id="saleValue" type="text" formControlName="saleValue">
+    </div>
+    <div>
+        <label for="saleDate">saleDate</label>
+        <input id="saleDate" type="text" formControlName="saleDate">
+    </div>
+    <div>
+        <label for="salePlatforms">salePlatforms</label>
+        <input id="salePlatforms" type="text" formControlName="salePlatforms">
+    </div>
+    <div>
+        <label for="details">details</label>
+        <input id="details" type="text" formControlName="details">
+    </div>
+    
 
-    //sales
-    saleValue: number;
-    saleDate: Date;
-    salePlatforms: string[];
-    sold: boolean;
-} -->
+    <button class="button" type="submit">Add product</button>
+
+</form>
+
+<!-- // product characteristics
+id: string;
+name: string;
+categories: string[]; //categorys or tags
+details: string;
+
+//purchaser
+purchaseValue: number;
+purchaseDate: Date;
+purchaserName: string;
+purchaserContacts: string[];
+
+//sales
+saleValue: number;
+saleDate: Date;
+salePlatforms: string[];
+sold: boolean; -->

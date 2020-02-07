@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/product.model';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'product-list',
@@ -10,8 +11,26 @@ import { Product } from 'src/app/product.model';
 
 export class ProductListComponent implements OnInit {
   productsList: Product[];
+  productForm;
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private formBuilder: FormBuilder) {
+    this.productForm = this.formBuilder.group({
+      id: null,
+      name: null,
+      categories: null,
+      purchaseValue: null,
+      purchaseDate: null,
+      purchaserName: null,
+      purchaserContacts: null,
+      saleValue: null,
+      saleDate: null,
+      salePlatforms: null,
+      sold: null,
+      details: null
+    });
+  }
 
   ngOnInit() {
     this.productService.getPolicies().subscribe(actions => {
@@ -34,25 +53,44 @@ export class ProductListComponent implements OnInit {
   delete(id: string) {
     this.productService.deleteProduct(id);
   }
-
-  add() {
+  onSubmit(product) {
+    console.log(product)
     this.create(
       {
-        id: 'id',
-        name: 'controle',
-        categories: ['ps1', 'xbox', 'perifericos'],
-        purchaseValue: 123,
-        purchaseDate: new Date,
-        purchaserName: "paulo b.",
-        purchaserContacts: ["41 92929292", "paulob@gmail.com"],
-        saleValue: 456,
-        saleDate: new Date,
-        salePlatforms: ["olx", "mercado livre"],
-        sold: true
+        id: product.id,
+        name: product.name,
+        categories: product.categories.split(','),
+        purchaseValue: product.purchaseValue,
+        purchaseDate: product.purchaseDate,
+        purchaserName: product.purchaserName,
+        purchaserContacts: product.purchaserContacts.split(','),
+        saleValue: product.saleValue,
+        saleDate: product.saleDate,
+        salePlatforms: product.salePlatforms.split(','),
+        sold: product.sold,
+        details: product.details
       }
-
     )
   }
+
+  // add() {
+  //   this.create(
+  //     {
+  //       id: 'id',
+  //       name: 'controle',
+  //       categories: ['ps1', 'xbox', 'perifericos'],
+  //       purchaseValue: 123,
+  //       purchaseDate: new Date,
+  //       purchaserName: "paulo b.",
+  //       purchaserContacts: ["41 92929292", "paulob@gmail.com"],
+  //       saleValue: 456,
+  //       saleDate: new Date,
+  //       salePlatforms: ["olx", "mercado livre"],
+  //       sold: true,
+  //       details: null
+  //     }
+  //   )
+  // }
 
 
 
