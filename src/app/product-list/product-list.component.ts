@@ -12,6 +12,7 @@ import { FormBuilder } from '@angular/forms';
 export class ProductListComponent implements OnInit {
   productsList: Product[];
   productForm;
+  resultsNumber: number = 10;
 
   constructor(
     private productService: ProductService,
@@ -33,6 +34,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("hi there")
     this.productService.getPolicies().subscribe(actions => {
       this.productsList = actions.map(a => {
         const data = a.payload.doc.data() as Product;
@@ -71,26 +73,33 @@ export class ProductListComponent implements OnInit {
         details: product.details
       }
     )
+
+    console.log(this.productsList)
   }
 
-  // add() {
-  //   this.create(
-  //     {
-  //       id: 'id',
-  //       name: 'controle',
-  //       categories: ['ps1', 'xbox', 'perifericos'],
-  //       purchaseValue: 123,
-  //       purchaseDate: new Date,
-  //       purchaserName: "paulo b.",
-  //       purchaserContacts: ["41 92929292", "paulob@gmail.com"],
-  //       saleValue: 456,
-  //       saleDate: new Date,
-  //       salePlatforms: ["olx", "mercado livre"],
-  //       sold: true,
-  //       details: null
-  //     }
-  //   )
-  // }
+  resultsQuantity(actual: number): boolean{
+    return actual < this.resultsNumber ? true : false
+  }
+
+  add() {
+    this.productsList.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    //   this.create(
+    //     {
+    //       id: 'id',
+    //       name: 'controle',
+    //       categories: ['ps1', 'xbox', 'perifericos'],
+    //       purchaseValue: 123,
+    //       purchaseDate: new Date,
+    //       purchaserName: "paulo b.",
+    //       purchaserContacts: ["41 92929292", "paulob@gmail.com"],
+    //       saleValue: 456,
+    //       saleDate: new Date,
+    //       salePlatforms: ["olx", "mercado livre"],
+    //       sold: true,
+    //       details: null
+    //     }
+    //   )
+  }
 
 
 

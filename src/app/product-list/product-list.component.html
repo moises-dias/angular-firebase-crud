@@ -11,10 +11,13 @@ salePlatforms: product.salePlatforms.split(','),
 sold: product.sold,
 details: product.details -->
 
-
+<div>
+    <label for="name">exibir</label>
+    <input [(ngModel)]="resultsNumber" type="number">
+</div>
 <table>
     <thead>
-        <!-- <th>id</th> -->
+        <th>id</th>
         <th>name</th>
         <th>categories</th>
         <th>purchaseValue</th>
@@ -27,25 +30,27 @@ details: product.details -->
         <th>details</th>
     </thead>
     <tbody>
-        <!-- <td>
-            <button (click)="add()">Delete</button>
-        </td> -->
-        <tr *ngFor="let product of productsList">
-
-            <!-- <td>{{product.id}}</td> -->
-            <td>{{product.name}}</td>
-            <td>{{product.categories}}</td>
-            <td>{{product.purchaseValue}}</td>
-            <td>{{product.purchaseDate}}</td>
-            <td>{{product.purchaserName}}</td>
-            <td>{{product.purchaserContacts}}</td>
-            <td>{{product.saleValue}}</td>
-            <td>{{product.saleDate}}</td>
-            <td>{{product.salePlatforms}}</td>
-            <td>{{product.details}}</td>
-            <td>
-                <button (click)="delete(product.id)">Delete</button>
-            </td>
+        <td>
+            <button (click)="add()">Deldddssete</button>
+        </td>
+        <tr *ngFor="let product of productsList, index as myid">
+            <ng-container *ngIf="resultsQuantity(myid)">
+                <!-- <td>{{myid}}</td> -->
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.categories}}</td>
+                <td>{{product.purchaseValue}}</td>
+                <td>{{product.purchaseDate}}</td>
+                <td>{{product.purchaserName}}</td>
+                <td>{{product.purchaserContacts}}</td>
+                <td>{{product.saleValue}}</td>
+                <td>{{product.saleDate}}</td>
+                <td>{{product.salePlatforms}}</td>
+                <td>{{product.details}}</td>
+                <td>
+                    <button (click)="delete(product.id)">Delete</button>
+                </td>
+            </ng-container>
         </tr>
     </tbody>
 </table>
