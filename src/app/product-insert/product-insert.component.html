@@ -1,51 +1,55 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
 
-    <!-- <div>
+    <div>
         <label for="id">id</label>
-        <input id="id" type="text" formControlName="id">
-    </div> -->
+        <input id="id" [value]="product ? product.id : ''" type="text" formControlName="id">
+    </div>
     <div>
         <label for="name">name</label>
-        <input id="name" type="text" formControlName="name">
+        <input id="name" [value]="product ? product.id : ''"  type="text" formControlName="name">
     </div>
     <div>
         <label for="categories">categories</label>
-        <input id="categories" type="text" formControlName="categories">
+        <input id="categories" [value]="product ? product.categories : ''" type="text" formControlName="categories">
     </div>
     <div>
         <label for="purchaseValue">purchaseValue</label>
-        <input id="purchaseValue" type="text" formControlName="purchaseValue">
+        <input id="purchaseValue" [value]="product ? product.purchaseValue : ''" type="text" formControlName="purchaseValue">
     </div>
     <div>
         <label for="purchaseDate">purchaseDate</label>
-        <input id="purchaseDate" type="text" formControlName="purchaseDate">
+        <input id="purchaseDate" [value]="product ? product.purchaseDate : ''" type="text" formControlName="purchaseDate">
     </div>
     <div>
         <label for="purchaserName">purchaserName</label>
-        <input id="purchaserName" type="text" formControlName="purchaserName">
+        <input id="purchaserName" [value]="product ? product.purchaserName : ''" type="text" formControlName="purchaserName">
     </div>
     <div>
         <label for="purchaserContacts">purchaserContacts</label>
-        <input id="purchaserContacts" type="text" formControlName="purchaserContacts">
+        <input id="purchaserContacts" [value]="product ? product.purchaserContacts : ''" type="text" formControlName="purchaserContacts">
     </div>
     <div>
         <label for="saleValue">saleValue</label>
-        <input id="saleValue" type="text" formControlName="saleValue">
+        <input id="saleValue" [value]="product ? product.saleValue : ''" type="text" formControlName="saleValue">
     </div>
     <div>
         <label for="saleDate">saleDate</label>
-        <input id="saleDate" type="text" formControlName="saleDate">
+        <input id="saleDate" [value]="product ? product.saleDate : ''" type="text" formControlName="saleDate">
     </div>
     <div>
         <label for="salePlatforms">salePlatforms</label>
-        <input id="salePlatforms" type="text" formControlName="salePlatforms">
+        <input id="salePlatforms" [value]="product ? product.salePlatforms : ''" type="text" formControlName="salePlatforms">
+    </div>
+    <div>
+        <label for="sold">sold</label>
+        <input id="sold" [value]="product ? product.sold : ''" type="text" formControlName="sold">
     </div>
     <div>
         <label for="details">details</label>
-        <input id="details" type="text" formControlName="details">
+        <input id="details" [value]="product ? product.details : ''" type="text" formControlName="details">
     </div>
     
 
-    <button class="button" type="submit">Add product</button>
+    <button class="button" type="submit">Finish</button>
 
 </form>

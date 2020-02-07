@@ -32,12 +32,11 @@ details: product.details -->
     </thead>
     <tbody>
         <td>
-            <button (click)="sort()">Deldddssete</button>
+            <button (click)="sort()">sort</button>
         </td>
-        <tr *ngFor="let product of productsList, index as myid">
+        <tr *ngFor="let product of productService.productsList, index as myid">
             <ng-container *ngIf="resultsQuantity(myid)">
                 <!-- <td>{{myid}}</td> -->
-                <td><a routerLink="/product/{{product.id}}">edit</a></td>
                 <td>{{product.id}}</td>
                 <td>{{product.name}}</td>
                 <td>{{product.categories}}</td>
@@ -52,12 +51,14 @@ details: product.details -->
                 <td>
                     <button (click)="delete(product.id)">Delete</button>
                 </td>
-                <td>
+                <td><a routerLink="/product/{{product.id}}">edit</a></td>
+                <!-- <td>
                     <button (click)="update(product)">update</button>
-                </td>
+                </td> -->
             </ng-container>
         </tr>
     </tbody>
+    <a routerLink="/product/new">new</a>
 </table>
 
 

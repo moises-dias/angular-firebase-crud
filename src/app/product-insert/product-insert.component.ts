@@ -39,30 +39,61 @@ export class ProductInsertComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id)
+    if (id != "new") {
+      this.product = this.productService.productsList.find(element => element.id === id);
+    }
+    console.log(this.product);
   }
   create(product: Product) {
     this.productService.createProduct(product);
   }
 
-  onSubmit(product) {
-    console.log(product)
-    this.create(
-      {
-        id: product.id,
-        name: product.name,
-        categories: product.categories.split(','),
-        purchaseValue: product.purchaseValue,
-        purchaseDate: product.purchaseDate,
-        purchaserName: product.purchaserName,
-        purchaserContacts: product.purchaserContacts.split(','),
-        saleValue: product.saleValue,
-        saleDate: product.saleDate,
-        salePlatforms: product.salePlatforms.split(','),
-        sold: product.sold,
-        details: product.details
-      }
-    )
+  update(product: Product) {
+    this.productService.updateProduct(product);
+  }
+
+  onSubmit(formProduct: Product) {
+    console.log("fora do if else")
+    console.log(formProduct)
+    console.log(formProduct.name)
+    if (this.product) {
+      console.log(formProduct.name)
+      this.update(
+        {
+          id: formProduct.id,
+          name: formProduct.name,
+          categories: formProduct.categories,
+          purchaseValue: formProduct.purchaseValue,
+          purchaseDate: formProduct.purchaseDate,
+          purchaserName: formProduct.purchaserName,
+          purchaserContacts: formProduct.purchaserContacts,
+          saleValue: formProduct.saleValue,
+          saleDate: formProduct.saleDate,
+          salePlatforms: formProduct.salePlatforms,
+          sold: formProduct.sold,
+          details: formProduct.details
+        }
+      )
+    }
+    else {
+      console.log(formProduct.name)
+      this.create(
+        {
+          id: formProduct.id,
+          name: formProduct.name,
+          categories: formProduct.categories,
+          purchaseValue: formProduct.purchaseValue,
+          purchaseDate: formProduct.purchaseDate,
+          purchaserName: formProduct.purchaserName,
+          purchaserContacts: formProduct.purchaserContacts,
+          saleValue: formProduct.saleValue,
+          saleDate: formProduct.saleDate,
+          salePlatforms: formProduct.salePlatforms,
+          sold: formProduct.sold,
+          details: formProduct.details
+        }
+      )
+    }
   }
 
 }

@@ -10,23 +10,13 @@ import { Product } from 'src/app/product.model';
 })
 
 export class ProductListComponent implements OnInit {
-  productsList: Product[];
   resultsNumber: number = 10;
 
   constructor(
     private productService: ProductService,
-    ) {  }
+    ) {}
 
-  ngOnInit() {
-    console.log("hi there")
-    this.productService.getProducts().subscribe(actions => {
-      this.productsList = actions.map(a => {
-        const data = a.payload.doc.data() as Product;
-        const id = a.payload.doc.id;
-        return { ...data, id } as Product;
-      });
-    });
-  }
+  ngOnInit() {}
 
   update(product: Product) {
     this.productService.updateProduct(product);
@@ -42,6 +32,7 @@ export class ProductListComponent implements OnInit {
   }
 
   sort() {
-    this.productsList.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    console.log(this.productService.productsList)
+    this.productService.productsList.sort((a,  b) => (a.name > b.name) ? 1 : -1)
   }
 }

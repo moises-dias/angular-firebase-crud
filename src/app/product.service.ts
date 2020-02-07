@@ -6,9 +6,18 @@ import { Product } from 'src/app/product.model';
   providedIn: 'root'
 })
 export class ProductService {
+  productsList: Product[];
 
-
-  constructor(private firestore: AngularFirestore) {console.log("construtora do service") }
+  constructor(private firestore: AngularFirestore) {
+    this.getProducts().subscribe(actions => {
+      this.productsList = actions.map(a => {
+        const data = a.payload.doc.data() as Product;
+        const id = a.payload.doc.id;
+        return { ...data, id } as Product;
+      });
+    });
+   }
+   
   // C
   createProduct(product: Product) {
     return this.firestore.collection('products').add(product);
