@@ -7,13 +7,14 @@ import { Product } from 'src/app/product.model';
 })
 export class ProductService {
 
-  constructor(private firestore: AngularFirestore) { }
+
+  constructor(private firestore: AngularFirestore) {console.log("construtora do service") }
   // C
   createProduct(product: Product) {
     return this.firestore.collection('products').add(product);
   }
   // R
-  getPolicies() {
+  getProducts() {
     return this.firestore.collection('products').snapshotChanges();
   }
   // U
@@ -25,4 +26,7 @@ export class ProductService {
   deleteProduct(productId: string) {
     this.firestore.doc('products/' + productId).delete();
   }
+  // getProductById(id: string) {
+  //   const product = array1.find(element => element > 10);
+  // }
 }

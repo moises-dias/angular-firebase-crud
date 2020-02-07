@@ -17,6 +17,7 @@ details: product.details -->
 </div>
 <table>
     <thead>
+        <th>link</th>
         <th>id</th>
         <th>name</th>
         <th>categories</th>
@@ -31,11 +32,12 @@ details: product.details -->
     </thead>
     <tbody>
         <td>
-            <button (click)="add()">Deldddssete</button>
+            <button (click)="sort()">Deldddssete</button>
         </td>
         <tr *ngFor="let product of productsList, index as myid">
             <ng-container *ngIf="resultsQuantity(myid)">
                 <!-- <td>{{myid}}</td> -->
+                <td><a routerLink="/product/{{product.id}}">edit</a></td>
                 <td>{{product.id}}</td>
                 <td>{{product.name}}</td>
                 <td>{{product.categories}}</td>
@@ -50,6 +52,9 @@ details: product.details -->
                 <td>
                     <button (click)="delete(product.id)">Delete</button>
                 </td>
+                <td>
+                    <button (click)="update(product)">update</button>
+                </td>
             </ng-container>
         </tr>
     </tbody>
@@ -57,72 +62,3 @@ details: product.details -->
 
 
 
-<form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
-
-    <!-- <div>
-        <label for="id">id</label>
-        <input id="id" type="text" formControlName="id">
-    </div> -->
-    <div>
-        <label for="name">name</label>
-        <input id="name" type="text" formControlName="name">
-    </div>
-    <div>
-        <label for="categories">categories</label>
-        <input id="categories" type="text" formControlName="categories">
-    </div>
-    <div>
-        <label for="purchaseValue">purchaseValue</label>
-        <input id="purchaseValue" type="text" formControlName="purchaseValue">
-    </div>
-    <div>
-        <label for="purchaseDate">purchaseDate</label>
-        <input id="purchaseDate" type="text" formControlName="purchaseDate">
-    </div>
-    <div>
-        <label for="purchaserName">purchaserName</label>
-        <input id="purchaserName" type="text" formControlName="purchaserName">
-    </div>
-    <div>
-        <label for="purchaserContacts">purchaserContacts</label>
-        <input id="purchaserContacts" type="text" formControlName="purchaserContacts">
-    </div>
-    <div>
-        <label for="saleValue">saleValue</label>
-        <input id="saleValue" type="text" formControlName="saleValue">
-    </div>
-    <div>
-        <label for="saleDate">saleDate</label>
-        <input id="saleDate" type="text" formControlName="saleDate">
-    </div>
-    <div>
-        <label for="salePlatforms">salePlatforms</label>
-        <input id="salePlatforms" type="text" formControlName="salePlatforms">
-    </div>
-    <div>
-        <label for="details">details</label>
-        <input id="details" type="text" formControlName="details">
-    </div>
-    
-
-    <button class="button" type="submit">Add product</button>
-
-</form>
-
-<!-- // product characteristics
-id: string;
-name: string;
-categories: string[]; //categorys or tags
-details: string;
-
-//purchaser
-purchaseValue: number;
-purchaseDate: Date;
-purchaserName: string;
-purchaserContacts: string[];
-
-//sales
-saleValue: number;
-saleDate: Date;
-salePlatforms: string[];
-sold: boolean; -->
