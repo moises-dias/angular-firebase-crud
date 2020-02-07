@@ -17,7 +17,7 @@ export class ProductService {
       });
     });
    }
-   
+
   // C
   createProduct(product: Product) {
     return this.firestore.collection('products').add(product);
@@ -28,7 +28,7 @@ export class ProductService {
   }
   // U
   updateProduct(product: Product) {
-    delete product.id;
+    // delete product.id;
     this.firestore.doc('products/' + product.id).update(product);
   }
   // D
