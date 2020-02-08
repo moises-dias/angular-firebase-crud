@@ -10,55 +10,46 @@ saleDate: product.saleDate,
 salePlatforms: product.salePlatforms.split(','),
 sold: product.sold,
 details: product.details -->
+<div class="menu-top"><a routerLink="/product/new">New Product</a></div>
 
 <div>
     <label for="name">exibir</label>
     <input [(ngModel)]="resultsNumber" type="number">
 </div>
+<button (click)="sort('id')" display:inline-block>sort id</button>
+<button (click)="sort('name')" display:inline-block>sort name</button>
+<div>
+    <input type="checkbox" id="sold" [(ngModel)]="onlySold" name="sold">
+    <label for="sold">sold</label>
+</div>
+<div>
+    <input type="checkbox" id="forSale" [(ngModel)]="onlyForSale" name="forSale">
+    <label for="forSale">forSale</label>
+</div>
+
 <table>
     <thead>
-        <th>link</th>
-        <th>id</th>
         <th>name</th>
-        <th>categories</th>
+        <th>sold</th>
         <th>purchaseValue</th>
-        <th>purchaseDate</th>
-        <th>purchaserName</th>
-        <th>purchaserContacts</th>
         <th>saleValue</th>
-        <th>saleDate</th>
-        <th>salePlatforms</th>
-        <th>details</th>
+        <th>deletar</th>
+        <th>editar</th>
     </thead>
     <tbody>
-        <td>
-            <button (click)="sort()">sort</button>
-        </td>
         <tr *ngFor="let product of productService.productsList, index as myid">
-            <ng-container *ngIf="resultsQuantity(myid)">
-                <!-- <td>{{myid}}</td> -->
-                <td>{{product.id}}</td>
+            <ng-container *ngIf="resultsQuantity(myid) && checkSold(product.sold)">
                 <td>{{product.name}}</td>
-                <td>{{product.categories}}</td>
+                <td>{{product.sold}}</td>
                 <td>{{product.purchaseValue}}</td>
-                <td>{{product.purchaseDate}}</td>
-                <td>{{product.purchaserName}}</td>
-                <td>{{product.purchaserContacts}}</td>
                 <td>{{product.saleValue}}</td>
-                <td>{{product.saleDate}}</td>
-                <td>{{product.salePlatforms}}</td>
-                <td>{{product.details}}</td>
                 <td>
                     <button (click)="delete(product.id)">Delete</button>
                 </td>
                 <td><a routerLink="/product/{{product.id}}">edit</a></td>
-                <!-- <td>
-                    <button (click)="update(product)">update</button>
-                </td> -->
             </ng-container>
         </tr>
     </tbody>
-    <a routerLink="/product/new">new</a>
 </table>
 
 

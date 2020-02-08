@@ -11,7 +11,8 @@ import { Product } from 'src/app/product.model';
 
 export class ProductListComponent implements OnInit {
   resultsNumber: number = 10;
-
+  onlySold: boolean = false;
+  onlyForSale: boolean = false;
   constructor(
     private productService: ProductService,
     ) {}
@@ -31,8 +32,17 @@ export class ProductListComponent implements OnInit {
     return actual < this.resultsNumber ? true : false
   }
 
-  sort() {
-    console.log(this.productService.productsList)
-    this.productService.productsList.sort((a,  b) => (a.name > b.name) ? 1 : -1)
+  checkSold(sold: boolean): boolean{
+    if(!sold && this.onlySold){
+      return false
+    }
+    else if(sold && this.onlyForSale){
+      return false
+    }
+    return true
+  }
+
+  sort(property: string) {
+    this.productService.productsList.sort((a,  b) => (a[property] > b[property]) ? 1 : -1)
   }
 }
