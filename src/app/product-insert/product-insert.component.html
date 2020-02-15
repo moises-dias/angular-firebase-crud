@@ -10,8 +10,9 @@
     </div>
     <div>
         <label for="name">name</label>
-        <input id="name" type="text" formControlName="name">
+        <input #spy id="name" type="text" formControlName="name">
     </div>
+    <div> {{ spy.className }}</div>
     <div>
         <label for="categories">categories</label>
         <input id="categories" type="text" formControlName="categories">
