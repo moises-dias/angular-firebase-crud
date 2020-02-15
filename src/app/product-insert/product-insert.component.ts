@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/product.model';
 import { ActivatedRoute } from '@angular/router';
@@ -11,8 +12,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./product-insert.component.css']
 })
 export class ProductInsertComponent implements OnInit {
+  name = new FormControl('');
+
   product: Product;
-  
   productForm;
 
   constructor(
@@ -22,19 +24,19 @@ export class ProductInsertComponent implements OnInit {
     private location: Location
 
   ) {
-    this.productForm = this.formBuilder.group({
-      id: null,
-      name: null,
-      categories: null,
-      purchaseValue: null,
-      purchaseDate: null,
-      purchaserName: null,
-      purchaserContacts: null,
-      saleValue: null,
-      saleDate: null,
-      salePlatforms: null,
-      sold: null,
-      details: null
+    this.productForm = new FormGroup({
+      id: new FormControl(''),
+      name: new FormControl(''),
+      categories: new FormControl(''),
+      purchaseValue: new FormControl(''),
+      purchaseDate: new FormControl(''),
+      purchaserName: new FormControl(''),
+      purchaserContacts: new FormControl(''),
+      saleValue: new FormControl(''),
+      saleDate: new FormControl(''),
+      salePlatforms: new FormControl(''),
+      sold: new FormControl(''),
+      details: new FormControl('')
     });
   }
 
@@ -42,6 +44,19 @@ export class ProductInsertComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id != "new") {
       this.product = this.productService.productsList.find(element => element.id === id);
+      
+      this.productForm.get('id').setValue(this.product.id);
+      this.productForm.get('name').setValue(this.product.name);
+      this.productForm.get('categories').setValue(this.product.categories);
+      this.productForm.get('purchaseValue').setValue(this.product.purchaseValue);
+      this.productForm.get('purchaseDate').setValue(this.product.purchaseDate);
+      this.productForm.get('purchaserName').setValue(this.product.purchaserName);
+      this.productForm.get('purchaserContacts').setValue(this.product.purchaserContacts);
+      this.productForm.get('saleValue').setValue(this.product.saleValue);
+      this.productForm.get('saleDate').setValue(this.product.saleDate);
+      this.productForm.get('salePlatforms').setValue(this.product.salePlatforms);
+      this.productForm.get('sold').setValue(this.product.sold);
+      this.productForm.get('details').setValue(this.product.details);
     }
   }
   
