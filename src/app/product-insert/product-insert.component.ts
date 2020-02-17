@@ -29,25 +29,12 @@ export class ProductInsertComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.createForm();
     const id = this.route.snapshot.paramMap.get('id');
     if (id != "new") {
+      console.log(this.productService.productsList)
       this.product = this.productService.productsList.find(element => element.id === id);
-
-      // this.formGroup.patchValue({email: "test"});
-      // this.productForm.get('id').setValue(this.product.id);
-      // this.productForm.get('name').setValue(this.product.name);
-      // this.productForm.get('categories').setValue(this.product.categories);
-      // this.productForm.get('purchaseValue').setValue(this.product.purchaseValue);
-      // this.productForm.get('purchaseDate').setValue(this.product.purchaseDate);
-      // this.productForm.get('purchaserName').setValue(this.product.purchaserName);
-      // this.productForm.get('purchaserContacts').setValue(this.product.purchaserContacts);
-      // this.productForm.get('saleValue').setValue(this.product.saleValue);
-      // this.productForm.get('saleDate').setValue(this.product.saleDate);
-      // this.productForm.get('salePlatforms').setValue(this.product.salePlatforms);
-      // this.productForm.get('sold').setValue(this.product.sold);
-      // this.productForm.get('details').setValue(this.product.details);
     }
+    this.createForm();
   }
 
   createForm() {
