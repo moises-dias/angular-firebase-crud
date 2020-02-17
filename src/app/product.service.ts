@@ -16,6 +16,8 @@ export class ProductService {
         return { ...data, id } as Product;
       });
     });
+    console.log("ON THE SERVICE ITS")
+    console.log(this.productsList)
    }
 
   // C

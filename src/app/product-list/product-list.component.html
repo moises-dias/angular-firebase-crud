@@ -10,14 +10,23 @@ saleDate: product.saleDate,
 salePlatforms: product.salePlatforms.split(','),
 sold: product.sold,
 details: product.details -->
-<div class="menu-top"><a routerLink="/product/new">New Product</a></div>
+<div class="menu-top"><a routerLink="/product/new">add product</a></div>
 
-<div>
-    <label for="name">exibir</label>
-    <input [(ngModel)]="resultsNumber" type="number">
-</div>
-<button (click)="sort('id')" display:inline-block>sort id</button>
-<button (click)="sort('name')" display:inline-block>sort name</button>
+<button color='primary' mat-raised-button>Hello World</button>
+<button color='error' mat-raised-button>
+    <mat-icon>assessment</mat-icon><span>test</span>
+</button>
+<mat-button-toggle #toggleBtn>Toggle</mat-button-toggle>
+{{toggleBtn.checked}}
+<mat-button-toggle-group #toggleGroup="matButtonToggleGroup" multiple>
+    <mat-button-toggle value='angular'>angular</mat-button-toggle>
+    <mat-button-toggle value='react'>react</mat-button-toggle>
+    <mat-button-toggle value='vue'>vue</mat-button-toggle>
+</mat-button-toggle-group>
+{{toggleGroup.value}}
+
+
+
 <div>
     <input type="checkbox" id="sold" [(ngModel)]="onlySold" name="sold">
     <label for="sold">sold</label>
@@ -26,6 +35,52 @@ details: product.details -->
     <input type="checkbox" id="forSale" [(ngModel)]="onlyForSale" name="forSale">
     <label for="forSale">forSale</label>
 </div>
+
+<!-- IMPLEMENTING MATERIAL DATA TABLE -->
+
+<mat-form-field>
+    <input (keyup)="applyFilter($event.target.value)" matInput placeholder='filter'>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort>
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+            <mat-header-cell mat-sort-header *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell mat-sort-header *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="purchaseValue">
+            <mat-header-cell mat-sort-header *matHeaderCellDef> Weight </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.purchaseValue}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="saleValue">
+            <mat-header-cell mat-sort-header *matHeaderCellDef> Symbol </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.saleValue}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row (click)="openDialog(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+
+
+<!-- IMPLEMENTING MATERIAL DATA TABLE -->
+
+
+
+
 
 <table>
     <thead>
@@ -38,7 +93,7 @@ details: product.details -->
     </thead>
     <tbody>
         <tr *ngFor="let product of productService.productsList, index as myid">
-            <ng-container *ngIf="resultsQuantity(myid) && checkSold(product.sold)">
+            <ng-container *ngIf="checkSold(product.sold)">
                 <td>{{product.name}}</td>
                 <td>{{product.sold}}</td>
                 <td>{{product.purchaseValue}}</td>
@@ -51,6 +106,3 @@ details: product.details -->
         </tr>
     </tbody>
 </table>
-
-
-

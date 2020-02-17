@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Item Details</h2>
+<h4 mat-dialog-content *ngFor="let item of data | keyvalue">
+    {{item.key}}:{{item.value}}
+</h4>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close mat-dialog-close='true'>Editar</button>
+    <button mat-button mat-dialog-close mat-dialog-close='false'>Vender</button>
+    <button mat-button mat-dialog-close mat-dialog-close='false'>Sair</button>
+</mat-dialog-actions>
