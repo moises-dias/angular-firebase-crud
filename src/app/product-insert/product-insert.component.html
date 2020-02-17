@@ -2,6 +2,8 @@
     <a routerLink="/products">products</a>
 </nav>
 
+
+
 <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
 
     <div>
@@ -53,7 +55,7 @@
         <label for="details">details</label>
         <input id="details" type="text" formControlName="details">
     </div>
-    
+
 
     <button class="button" type="submit">Finish</button>
 

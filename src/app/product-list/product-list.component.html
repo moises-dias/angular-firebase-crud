@@ -10,33 +10,15 @@ saleDate: product.saleDate,
 salePlatforms: product.salePlatforms.split(','),
 sold: product.sold,
 details: product.details -->
-<div class="menu-top"><a routerLink="/product/new">add product</a></div>
 
-<button color='primary' mat-raised-button>Hello World</button>
-<button color='error' mat-raised-button>
-    <mat-icon>assessment</mat-icon><span>test</span>
-</button>
-<mat-button-toggle #toggleBtn>Toggle</mat-button-toggle>
-{{toggleBtn.checked}}
-<mat-button-toggle-group #toggleGroup="matButtonToggleGroup" multiple>
-    <mat-button-toggle value='angular'>angular</mat-button-toggle>
-    <mat-button-toggle value='react'>react</mat-button-toggle>
-    <mat-button-toggle value='vue'>vue</mat-button-toggle>
-</mat-button-toggle-group>
-{{toggleGroup.value}}
-
-
+<!-- <mat-toolbar color="primary">
+    <span class="fill-remaining-space">My Products List</span>
+</mat-toolbar> -->
 
 <div>
-    <input type="checkbox" id="sold" [(ngModel)]="onlySold" name="sold">
-    <label for="sold">sold</label>
+    <button mat-raised-button color="primary"  routerLink="/product/new">Add Product</button>
 </div>
-<div>
-    <input type="checkbox" id="forSale" [(ngModel)]="onlyForSale" name="forSale">
-    <label for="forSale">forSale</label>
-</div>
-
-<!-- IMPLEMENTING MATERIAL DATA TABLE -->
+<!-- <mat-divider></mat-divider> -->
 
 <mat-form-field>
     <input (keyup)="applyFilter($event.target.value)" matInput placeholder='filter'>
@@ -73,36 +55,3 @@ details: product.details -->
     </mat-table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-
-
-
-<!-- IMPLEMENTING MATERIAL DATA TABLE -->
-
-
-
-
-
-<table>
-    <thead>
-        <th>name</th>
-        <th>sold</th>
-        <th>purchaseValue</th>
-        <th>saleValue</th>
-        <th>deletar</th>
-        <th>editar</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of productService.productsList, index as myid">
-            <ng-container *ngIf="checkSold(product.sold)">
-                <td>{{product.name}}</td>
-                <td>{{product.sold}}</td>
-                <td>{{product.purchaseValue}}</td>
-                <td>{{product.saleValue}}</td>
-                <td>
-                    <button (click)="delete(product.id)">Delete</button>
-                </td>
-                <td><a routerLink="/product/{{product.id}}">edit</a></td>
-            </ng-container>
-        </tr>
-    </tbody>
-</table>

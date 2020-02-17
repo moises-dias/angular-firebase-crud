@@ -1,5 +1,6 @@
 <h2 mat-dialog-title>Item Details</h2>
 <h4 mat-dialog-content *ngFor="let item of data | keyvalue">
+    <!-- maybe put icons for the attributes displayed -->
     {{item.key}}:{{item.value}}
 </h4>
 <mat-dialog-actions>
