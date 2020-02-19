@@ -48,6 +48,23 @@ export class ProductInsertComponent implements OnInit {
 
   createForm() {
 
+// id
+// name
+// categories
+// details
+
+// purchase value
+// purchase date
+
+
+// sold {
+// 	  sale value
+// 	  sale date
+// 	  sale platform
+// 	  purchaser name
+// 	  purchaser contacts
+// }
+
     this.formGroup = this.formBuilder.group({
       formArray: this.formBuilder.array([
         this.formBuilder.group({
@@ -90,7 +107,9 @@ export class ProductInsertComponent implements OnInit {
     this.productService.updateProduct(product);
   }
 
-  onSubmit(formProduct: Product) {
+  onSubmit(array1, array2) {
+    const formProduct: Product = {...array1, ...array2}
+    console.log(formProduct);
     if (this.product) {
       this.update(formProduct)
     }
@@ -105,67 +124,6 @@ export class ProductInsertComponent implements OnInit {
     console.log(this.stepper.selectedIndex)
   }
   selectionChange(event) {
-    console.log(event.selectedIndex)
-
-    if (event.selectedIndex === 0) {
-
-      console.log("first")
-      // this.formGroup.get('id').setValidators([Validators.required]);
-      // this.formGroup.get('name').setValidators(null);
-      // this.formGroup.get('categories').setValidators(null);
-      // this.formGroup.get('purchaseValue').setValidators(null);
-      // this.formGroup.get('purchaseDate').setValidators(null);
-      // this.formGroup.get('purchaserName').setValidators(null);
-      // this.formGroup.get('purchaserContacts').setValidators(null);
-      // this.formGroup.get('saleValue').setValidators(null);
-      // this.formGroup.get('saleDate').setValidators(null);
-      // this.formGroup.get('salePlatforms').setValidators(null);
-      // this.formGroup.get('sold').setValidators(null);
-      // this.formGroup.get('details').setValidators(null);
-
-      // this.formGroup.get('id').updateValueAndValidity();
-      // this.formGroup.get('name').updateValueAndValidity();
-      // this.formGroup.get('categories').updateValueAndValidity();
-      // this.formGroup.get('purchaseValue').updateValueAndValidity();
-      // this.formGroup.get('purchaseDate').updateValueAndValidity();
-      // this.formGroup.get('purchaserName').updateValueAndValidity();
-      // this.formGroup.get('purchaserContacts').updateValueAndValidity();
-      // this.formGroup.get('saleValue').updateValueAndValidity();
-      // this.formGroup.get('saleDate').updateValueAndValidity();
-      // this.formGroup.get('salePlatforms').updateValueAndValidity();
-      // this.formGroup.get('sold').updateValueAndValidity();
-      // this.formGroup.get('details').updateValueAndValidity();
-    }
-
-    if (event.selectedIndex === 1) {
-
-      console.log("second")
-      // this.formGroup.get('id').setValidators(null);
-      // this.formGroup.get('name').setValidators([Validators.required]);
-      // this.formGroup.get('categories').setValidators([Validators.required]);
-      // this.formGroup.get('purchaseValue').setValidators([Validators.required]);
-      // this.formGroup.get('purchaseDate').setValidators([Validators.required]);
-      // this.formGroup.get('purchaserName').setValidators([Validators.required]);
-      // this.formGroup.get('purchaserContacts').setValidators([Validators.required]);
-      // this.formGroup.get('saleValue').setValidators([Validators.required]);
-      // this.formGroup.get('saleDate').setValidators([Validators.required]);
-      // this.formGroup.get('salePlatforms').setValidators([Validators.required]);
-      // this.formGroup.get('sold').setValidators([Validators.required]);
-      // this.formGroup.get('details').setValidators([Validators.required]);
-
-      // this.formGroup.get('id').updateValueAndValidity();
-      // this.formGroup.get('name').updateValueAndValidity();
-      // this.formGroup.get('categories').updateValueAndValidity();
-      // this.formGroup.get('purchaseValue').updateValueAndValidity();
-      // this.formGroup.get('purchaseDate').updateValueAndValidity();
-      // this.formGroup.get('purchaserName').updateValueAndValidity();
-      // this.formGroup.get('purchaserContacts').updateValueAndValidity();
-      // this.formGroup.get('saleValue').updateValueAndValidity();
-      // this.formGroup.get('saleDate').updateValueAndValidity();
-      // this.formGroup.get('salePlatforms').updateValueAndValidity();
-      // this.formGroup.get('sold').updateValueAndValidity();
-      // this.formGroup.get('details').updateValueAndValidity();
-    }
   }
 
 }

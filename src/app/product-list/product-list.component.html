@@ -28,7 +28,7 @@ details: product.details -->
     <mat-table [dataSource]="dataSource" matSort>
         <!-- Position Column -->
         <ng-container matColumnDef="id">
-            <mat-header-cell mat-sort-header *matHeaderCellDef> No. </mat-header-cell>
+            <mat-header-cell mat-sort-header *matHeaderCellDef> ID </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
         </ng-container>
 
@@ -39,14 +39,14 @@ details: product.details -->
         </ng-container>
 
         <!-- Weight Column -->
-        <ng-container matColumnDef="purchaseValue">
-            <mat-header-cell mat-sort-header *matHeaderCellDef> Weight </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.purchaseValue}} </mat-cell>
+        <ng-container matColumnDef="purchaseDate">
+            <mat-header-cell mat-sort-header *matHeaderCellDef> purchaseDate </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.purchaseDate}} </mat-cell>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="saleValue">
-            <mat-header-cell mat-sort-header *matHeaderCellDef> Symbol </mat-header-cell>
+            <mat-header-cell mat-sort-header *matHeaderCellDef> saleValue </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.saleValue}} </mat-cell>
         </ng-container>
 

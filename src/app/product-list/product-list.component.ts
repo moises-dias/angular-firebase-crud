@@ -30,7 +30,7 @@ export class ProductListComponent implements OnInit {
 
   productsList: Product[];
 
-  displayedColumns: string[] = ['id', 'name', 'purchaseValue', 'saleValue'];
+  displayedColumns: string[] = ['id', 'name', 'purchaseDate', 'saleValue'];
   dataSource = new MatTableDataSource(this.productsList);
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
