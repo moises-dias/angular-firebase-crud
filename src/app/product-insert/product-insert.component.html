@@ -2,20 +2,20 @@
 <div>
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
         <mat-horizontal-stepper formArrayName="formArray" linear #stepper (selectionChange)="selectionChange($event)">
-            <mat-step label="shipping address" [stepControl]="formArray?.get([0])">
+            <mat-step label="shipping address" formGroupName="0" [stepControl]="formArray?.get([0])">
                 <!-- -----ID----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="ID" formControlName="id">
-                    <mat-error *ngIf="!formArray?.get([0]).controls['id'].valid && formArray?.get([0]).controls['id'].touched">
+                    <mat-error *ngIf="!formGroup.formArray?.controls['id'].valid && formGroup.formArray?.controls['id'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
             </mat-step>
-            <mat-step label="billing address" [stepControl]="formArray?.get([0])">
+            <mat-step label="billing address" formGroupName="1" [stepControl]="formArray?.get([1])">
                 <!-- -----Name----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Name" formControlName="name">
-                    <mat-error *ngIf="!formGroup.controls['name'].valid && formGroup.controls['name'].touched">
+                    <mat-error *ngIf="!formGroup.formArray?.controls['name'].valid && formGroup.formArray?.controls['name'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
@@ -24,7 +24,7 @@
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Categories" formControlName="categories">
                     <mat-error
-                        *ngIf="!formGroup.controls['categories'].valid && formGroup.controls['categories'].touched">
+                        *ngIf="!formGroup.formArray?.controls['categories'].valid && formGroup.formArray?.controls['categories'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
@@ -33,7 +33,7 @@
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Purchase Value" formControlName="purchaseValue">
                     <mat-error
-                        *ngIf="!formGroup.controls['purchaseValue'].valid && formGroup.controls['purchaseValue'].touched">
+                        *ngIf="!formGroup.formArray?.controls['purchaseValue'].valid && formGroup.formArray?.controls['purchaseValue'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
@@ -42,7 +42,7 @@
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Purchase Date" formControlName="purchaseDate">
                     <mat-error
-                        *ngIf="!formGroup.controls['purchaseDate'].valid && formGroup.controls['purchaseDate'].touched">
+                        *ngIf="!formGroup.formArray?.controls['purchaseDate'].valid && formGroup.formArray?.controls['purchaseDate'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
@@ -51,7 +51,7 @@
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Purchaser Name" formControlName="purchaserName">
                     <mat-error
-                        *ngIf="!formGroup.controls['purchaserName'].valid && formGroup.controls['purchaserName'].touched">
+                        *ngIf="!formGroup.formArray?.controls['purchaserName'].valid && formGroup.formArray?.controls['purchaserName'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
@@ -60,7 +60,7 @@
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Purchaser Contacts" formControlName="purchaserContacts">
                     <mat-error
-                        *ngIf="!formGroup.controls['purchaserContacts'].valid && formGroup.controls['purchaserContacts'].touched">
+                        *ngIf="!formGroup.formArray?.controls['purchaserContacts'].valid && formGroup.formArray?.controls['purchaserContacts'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
@@ -69,7 +69,7 @@
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Sale Value" formControlName="saleValue">
                     <mat-error
-                        *ngIf="!formGroup.controls['saleValue'].valid && formGroup.controls['saleValue'].touched">
+                        *ngIf="!formGroup.formArray?.controls['saleValue'].valid && formGroup.formArray?.controls['saleValue'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
@@ -77,7 +77,7 @@
                 <!-- -----Sale Date----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Sale Date" formControlName="saleDate">
-                    <mat-error *ngIf="!formGroup.controls['saleDate'].valid && formGroup.controls['saleDate'].touched">
+                    <mat-error *ngIf="!formGroup.formArray?.controls['saleDate'].valid && formGroup.formArray?.controls['saleDate'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
@@ -86,7 +86,7 @@
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Sale Platforms" formControlName="salePlatforms">
                     <mat-error
-                        *ngIf="!formGroup.controls['salePlatforms'].valid && formGroup.controls['salePlatforms'].touched">
+                        *ngIf="!formGroup.formArray?.controls['salePlatforms'].valid && formGroup.formArray?.controls['salePlatforms'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
@@ -94,7 +94,7 @@
                 <!-- -----Sold----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Sold" formControlName="sold">
-                    <mat-error *ngIf="!formGroup.controls['sold'].valid && formGroup.controls['sold'].touched">
+                    <mat-error *ngIf="!formGroup.formArray?.controls['sold'].valid && formGroup.formArray?.controls['sold'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>
@@ -102,7 +102,7 @@
                 <!-- -----Details----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Details" formControlName="details">
-                    <mat-error *ngIf="!formGroup.controls['details'].valid && formGroup.controls['details'].touched">
+                    <mat-error *ngIf="!formGroup.formArray?.controls['details'].valid && formGroup.formArray?.controls['details'].touched">
                         {{ titleAlert }}
                     </mat-error>
                 </mat-form-field>

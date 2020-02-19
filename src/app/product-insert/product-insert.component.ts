@@ -47,45 +47,28 @@ export class ProductInsertComponent implements OnInit {
   }
 
   createForm() {
-    this.firstStep = this.formBuilder.group({
-      'id': [this.product ? this.product.id : null, this.stepper.selectedIndex === 0 ? Validators.required : null],
-    }),
-      this.secondStep = this.formBuilder.group({
-        'name': [this.product ? this.product.name : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-        'categories': [this.product ? this.product.categories : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-        'purchaseValue': [this.product ? this.product.purchaseValue : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-        'purchaseDate': [this.product ? this.product.purchaseDate : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-        'purchaserName': [this.product ? this.product.purchaserName : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-        'purchaserContacts': [this.product ? this.product.purchaserContacts : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-        'saleValue': [this.product ? this.product.saleValue : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-        'saleDate': [this.product ? this.product.saleDate : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-        'salePlatforms': [this.product ? this.product.salePlatforms : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-        'sold': [this.product ? this.product.sold : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-        'details': [this.product ? this.product.details : null, this.stepper.selectedIndex === 1 ? Validators.required : null]
-      }),
 
-
-      this.formGroup = this.formBuilder.group({
-        formArray: this.formBuilder.array([
-          this.formBuilder.group({
-            'id': [this.product ? this.product.id : null, this.stepper.selectedIndex === 0 ? Validators.required : null],
-          }),
-          this.formBuilder.group({
-            'name': [this.product ? this.product.name : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-            'categories': [this.product ? this.product.categories : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-            'purchaseValue': [this.product ? this.product.purchaseValue : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-            'purchaseDate': [this.product ? this.product.purchaseDate : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-            'purchaserName': [this.product ? this.product.purchaserName : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-            'purchaserContacts': [this.product ? this.product.purchaserContacts : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-            'saleValue': [this.product ? this.product.saleValue : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-            'saleDate': [this.product ? this.product.saleDate : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-            'salePlatforms': [this.product ? this.product.salePlatforms : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-            'sold': [this.product ? this.product.sold : null, this.stepper.selectedIndex === 1 ? Validators.required : null],
-            'details': [this.product ? this.product.details : null, this.stepper.selectedIndex === 1 ? Validators.required : null]
-            // 'description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(10)]]
-          }),
-        ])
-      });
+    this.formGroup = this.formBuilder.group({
+      formArray: this.formBuilder.array([
+        this.formBuilder.group({
+          'id': [this.product ? this.product.id : null, Validators.required],
+        }),
+        this.formBuilder.group({
+          'name': [this.product ? this.product.name : null, Validators.required],
+          'categories': [this.product ? this.product.categories : null, Validators.required],
+          'purchaseValue': [this.product ? this.product.purchaseValue : null, Validators.required],
+          'purchaseDate': [this.product ? this.product.purchaseDate : null, Validators.required],
+          'purchaserName': [this.product ? this.product.purchaserName : null, Validators.required],
+          'purchaserContacts': [this.product ? this.product.purchaserContacts : null, Validators.required],
+          'saleValue': [this.product ? this.product.saleValue : null, Validators.required],
+          'saleDate': [this.product ? this.product.saleDate : null, Validators.required],
+          'salePlatforms': [this.product ? this.product.salePlatforms : null, Validators.required],
+          'sold': [this.product ? this.product.sold : null, Validators.required],
+          'details': [this.product ? this.product.details : null, Validators.required]
+          // 'description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(10)]]
+        }),
+      ])
+    });
   }
 
   // getErrorEmail() {
