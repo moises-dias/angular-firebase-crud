@@ -48,42 +48,44 @@ export class ProductInsertComponent implements OnInit {
 
   createForm() {
 
-// id
-// name
-// categories
-// details
+    // id
+    // name
+    // categories
+    // details
 
-// purchase value
-// purchase date
+    // purchase value
+    // purchase date
 
 
-// sold {
-// 	  sale value
-// 	  sale date
-// 	  sale platform
-// 	  purchaser name
-// 	  purchaser contacts
-// }
+    // sold {
+    // 	  sale value
+    // 	  sale date
+    // 	  sale platform
+    // 	  purchaser name
+    // 	  purchaser contacts
+    // }
 
     this.formGroup = this.formBuilder.group({
       formArray: this.formBuilder.array([
         this.formBuilder.group({
-          'id': [this.product ? this.product.id : null, Validators.required],
+          'id': [this.product ? this.product.id : null, null],
+          'name': [this.product ? this.product.name : null, Validators.required],
+          'categories': [this.product ? this.product.categories : null, null],
+          'details': [this.product ? this.product.details : null, null]
         }),
         this.formBuilder.group({
-          'name': [this.product ? this.product.name : null, Validators.required],
-          'categories': [this.product ? this.product.categories : null, Validators.required],
-          'purchaseValue': [this.product ? this.product.purchaseValue : null, Validators.required],
-          'purchaseDate': [this.product ? this.product.purchaseDate : null, Validators.required],
+          'purchaseValue': [this.product ? this.product.purchaseValue : null, null],
+          'purchaseDate': [this.product ? this.product.purchaseDate : null, null],
+        }),
+        this.formBuilder.group({
+          'sold': [this.product ? this.product.sold : null, null],
+          'saleDate': [this.product ? this.product.saleDate : null, null],
+          'saleValue': [this.product ? this.product.saleValue : null, null],
           'purchaserName': [this.product ? this.product.purchaserName : null, Validators.required],
           'purchaserContacts': [this.product ? this.product.purchaserContacts : null, Validators.required],
-          'saleValue': [this.product ? this.product.saleValue : null, Validators.required],
-          'saleDate': [this.product ? this.product.saleDate : null, Validators.required],
-          'salePlatforms': [this.product ? this.product.salePlatforms : null, Validators.required],
-          'sold': [this.product ? this.product.sold : null, Validators.required],
-          'details': [this.product ? this.product.details : null, Validators.required]
+          'salePlatforms': [this.product ? this.product.salePlatforms : null, null],
           // 'description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(10)]]
-        }),
+        })
       ])
     });
   }
@@ -107,8 +109,8 @@ export class ProductInsertComponent implements OnInit {
     this.productService.updateProduct(product);
   }
 
-  onSubmit(array1, array2) {
-    const formProduct: Product = {...array1, ...array2}
+  onSubmit(array1, array2, array3) {
+    const formProduct: Product = { ...array1, ...array2, ...array3 }
     console.log(formProduct);
     if (this.product) {
       this.update(formProduct)
