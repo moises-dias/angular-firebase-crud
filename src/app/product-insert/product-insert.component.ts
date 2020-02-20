@@ -81,8 +81,8 @@ export class ProductInsertComponent implements OnInit {
           'sold': [this.product ? this.product.sold : null, null],
           'saleDate': [this.product ? this.product.saleDate : null, null],
           'saleValue': [this.product ? this.product.saleValue : null, null],
-          'purchaserName': [this.product ? this.product.purchaserName : null, Validators.required],
-          'purchaserContacts': [this.product ? this.product.purchaserContacts : null, Validators.required],
+          'purchaserName': [this.product ? this.product.purchaserName : null, null],
+          'purchaserContacts': [this.product ? this.product.purchaserContacts : null, null],
           'salePlatforms': [this.product ? this.product.salePlatforms : null, null],
           // 'description': [null, [Validators.required, Validators.minLength(5), Validators.maxLength(10)]]
         })
@@ -126,6 +126,12 @@ export class ProductInsertComponent implements OnInit {
     console.log(this.stepper.selectedIndex)
   }
   selectionChange(event) {
+  }
+  opened() {
+    console.log("open")
+  }
+  closed() {
+    console.log("closed")
   }
 
 }

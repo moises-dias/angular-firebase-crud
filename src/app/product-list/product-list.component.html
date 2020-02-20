@@ -51,7 +51,7 @@ details: product.details -->
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row (click)="openDialog(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-row (click)="openDialog(row); showMe(row)" [ngStyle]="{'background-color':row.purchaserName !== null ? '#f4511e' : '#3498DB' }" *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

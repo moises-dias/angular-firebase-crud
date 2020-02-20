@@ -82,5 +82,8 @@ export class ProductListComponent implements OnInit {
     }
     return true
   }
+  showMe(row){
+    console.log(row.purchaserName)
+  }
 
 }
