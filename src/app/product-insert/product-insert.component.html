@@ -9,34 +9,34 @@
                 <!-- -----ID----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="ID" formControlName="id">
-                    <mat-error
+                    <!-- <mat-error
                         *ngIf="!formArray?.get([0]).controls['id'].valid && formArray?.get([0]).controls['id'].touched">
                         {{ titleAlert }}
-                    </mat-error>
+                    </mat-error> -->
                 </mat-form-field>
                 <!-- -----Name----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Name" formControlName="name" required>
-                    <mat-error
+                    <!-- <mat-error
                         *ngIf="!formArray?.get([0]).controls['name'].valid && formArray?.get([0]).controls['name'].touched">
                         {{ titleAlert }}
-                    </mat-error>
+                    </mat-error> -->
                 </mat-form-field>
                 <!-- -----Categories----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Categories" formControlName="categories">
-                    <mat-error
+                    <!-- <mat-error
                         *ngIf="!formArray?.get([0]).controls['categories'].valid && formArray?.get([0]).controls['categories'].touched">
                         {{ titleAlert }}
-                    </mat-error>
+                    </mat-error> -->
                 </mat-form-field>
                 <!-- -----Details----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Details" formControlName="details">
-                    <mat-error
+                    <!-- <mat-error
                         *ngIf="!formArray?.get([0]).controls['details'].valid && formArray?.get([0]).controls['details'].touched">
                         {{ titleAlert }}
-                    </mat-error>
+                    </mat-error> -->
                 </mat-form-field>
             </mat-step>
 
@@ -45,10 +45,10 @@
                 <!-- -----Purchase Value----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Purchase Value" formControlName="purchaseValue">
-                    <mat-error
+                    <!-- <mat-error
                         *ngIf="!formArray?.get([1]).controls['purchaseValue'].valid && formArray?.get([1]).controls['purchaseValue'].touched">
                         {{ titleAlert }}
-                    </mat-error>
+                    </mat-error> -->
                 </mat-form-field>
                 <!-- -----Purchase Date----- -->
                 <mat-form-field class="form-element">
@@ -56,10 +56,10 @@
                         formControlName="purchaseDate">
                     <mat-datepicker-toggle [for]='purchaseDate' matSuffix></mat-datepicker-toggle>
                     <mat-datepicker #purchaseDate></mat-datepicker>
-                    <mat-error
+                    <!-- <mat-error
                         *ngIf="!formArray?.get([1]).controls['purchaseDate'].valid && formArray?.get([1]).controls['purchaseDate'].touched">
                         {{ titleAlert }}
-                    </mat-error>
+                    </mat-error> -->
                 </mat-form-field>
             </mat-step>
 
@@ -81,10 +81,10 @@
                     <!-- -----Sold----- -->
                     <mat-form-field class="form-element">
                         <input matInput placeholder="Sold" formControlName="sold">
-                        <mat-error
+                        <!-- <mat-error
                             *ngIf="!formArray?.get([2]).controls['sold'].valid && formArray?.get([2]).controls['sold'].touched">
                             {{ titleAlert }}
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
 
                     <!-- -----Sale Date----- -->
@@ -92,46 +92,46 @@
                         <input matInput placeholder="Sale Date" [matDatepicker]='saleDate' formControlName="saleDate">
                         <mat-datepicker-toggle [for]='saleDate' matSuffix></mat-datepicker-toggle>
                         <mat-datepicker #saleDate></mat-datepicker>
-                        <mat-error
+                        <!-- <mat-error
                             *ngIf="!formArray?.get([2]).controls['saleDate'].valid && formArray?.get([2]).controls['saleDate'].touched">
                             {{ titleAlert }}
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
 
                     <!-- -----Sale Value----- -->
                     <mat-form-field class="form-element">
                         <input matInput placeholder="Sale Value" formControlName="saleValue">
-                        <mat-error
+                        <!-- <mat-error
                             *ngIf="!formArray?.get([2]).controls['saleValue'].valid && formArray?.get([2]).controls['saleValue'].touched">
                             {{ titleAlert }}
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
 
                     <!-- -----Purchaser Name----- -->
                     <mat-form-field class="form-element">
                         <input matInput placeholder="Purchaser Name" formControlName="purchaserName" [required]="panel.expanded">
-                        <mat-error
+                        <!-- <mat-error
                             *ngIf="!formArray?.get([2]).controls['purchaserName'].valid && formArray?.get([2]).controls['purchaserName'].touched">
                             {{ titleAlert }}
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
 
                     <!-- -----Purchaser Contacts----- -->
                     <mat-form-field class="form-element">
                         <input matInput placeholder="Purchaser Contacts" formControlName="purchaserContacts" [required]="panel.expanded">
-                        <mat-error
+                        <!-- <mat-error
                             *ngIf="!formArray?.get([2]).controls['purchaserContacts'].valid && formArray?.get([2]).controls['purchaserContacts'].touched">
                             {{ titleAlert }}
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
 
                     <!-- -----Sale Platforms----- -->
                     <mat-form-field class="form-element">
                         <input matInput placeholder="Sale Platforms" formControlName="salePlatforms">
-                        <mat-error
+                        <!-- <mat-error
                             *ngIf="!formArray?.get([2]).controls['salePlatforms'].valid && formArray?.get([2]).controls['salePlatforms'].touched">
                             {{ titleAlert }}
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
                 </mat-expansion-panel>
                 <hr>

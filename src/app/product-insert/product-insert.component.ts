@@ -46,6 +46,14 @@ export class ProductInsertComponent implements OnInit {
     this.createForm();
   }
 
+  getArray(){
+    return <FormArray>this.formGroup.get('formArray');
+  }
+  myFunc(pos: string, val: string){
+    console.log((<FormArray>this.formGroup.get('formArray')).controls[0].value.id.touched)
+    return pos + val;
+  }
+
   createForm() {
 
     // id
