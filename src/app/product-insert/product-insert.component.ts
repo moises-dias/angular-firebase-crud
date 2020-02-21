@@ -6,7 +6,6 @@ import { Product } from 'src/app/product.model';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MatStepper } from '@angular/material';
-// import { Observable } from 'rxjs/Observable';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
@@ -17,10 +16,9 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 })
 export class ProductInsertComponent implements OnInit {
   isLinear = true;
-  // name = new FormControl('');
   formGroup: FormGroup;
-  firstStep: FormGroup;
-  secondStep: FormGroup;
+
+  categoryList: string[] = [];
 
   get formArray(): AbstractControl | null { return this.formGroup.get('formArray'); }
 
@@ -54,12 +52,22 @@ export class ProductInsertComponent implements OnInit {
     return pos + val;
   }
 
+  onKeydownEvent(value: string, keyCode: number) {
+    console.log(keyCode);
+    if(keyCode == 13) {
+      this.categoryList.push(value);
+      this.categoryList.sort();
+      console.log(this.categoryList);
+      (<FormArray>this.formGroup.get('formArray')).controls[0].patchValue({categories:''})
+    }
+  }
+
   createForm() {
 
     // id
     // name
-    // categories
     // details
+    // categories
 
     // purchase value
     // purchase date
@@ -76,9 +84,9 @@ export class ProductInsertComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       formArray: this.formBuilder.array([
         this.formBuilder.group({
-          'id': [this.product ? this.product.id : null, null],
+          id: [this.product ? this.product.id : null, null],
           'name': [this.product ? this.product.name : null, Validators.required],
-          'categories': [this.product ? this.product.categories : null, null],
+          'categories': [this.product ? this.setCategoriesList(this.product.categories) : '', null],
           'details': [this.product ? this.product.details : null, null]
         }),
         this.formBuilder.group({
@@ -98,16 +106,10 @@ export class ProductInsertComponent implements OnInit {
     });
   }
 
-  // getErrorEmail() {
-  //   return this.formGroup.get('email').hasError('required') ? 'Field is required' :
-  //     this.formGroup.get('email').hasError('pattern') ? 'Not a valid emailaddress' :
-  //       this.formGroup.get('email').hasError('alreadyInUse') ? 'This emailaddress is already in use' : '';
-  // }
-
-  // getErrorPassword() {
-  //   return this.formGroup.get('password').hasError('required') ? 'Field is required (at least eight characters, one uppercase letter and one number)' :
-  //     this.formGroup.get('password').hasError('requirements') ? 'Password needs to be at least eight characters, one uppercase letter and one number' : '';
-  // }
+  setCategoriesList(categories: string): string {
+    this.categoryList = categories.split(',');
+    return '';
+  }
 
   create(product: Product) {
     this.productService.createProduct(product);
@@ -120,6 +122,8 @@ export class ProductInsertComponent implements OnInit {
   onSubmit(array1, array2, array3) {
     const formProduct: Product = { ...array1, ...array2, ...array3 }
     console.log(formProduct);
+    formProduct.categories=this.categoryList.toString();
+    this.categoryList = [];
     if (this.product) {
       this.update(formProduct)
     }
@@ -131,7 +135,7 @@ export class ProductInsertComponent implements OnInit {
 
   move() {
     // this.stepper.selectedIndex = 1
-    console.log(this.stepper.selectedIndex)
+    console.log("test")
   }
   selectionChange(event) {
   }

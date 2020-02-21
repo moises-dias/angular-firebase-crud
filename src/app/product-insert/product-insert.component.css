@@ -24,4 +24,8 @@
   width: 100%;
 }
 
-
+.mat-icon:not(.formIcon) {
+  cursor: pointer;
+  padding: 0px 0px 0px 5px;
+  transform: scale(2);
+}
