@@ -1,6 +1,10 @@
-# AngularFirebaseCrud
+# Products Management
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
+Projeto em andamento, criado para aprendizado de Angular, Material Design e Firebase.
+
+Uma descrição detalhada do projeto com suas funcionalidades será disponibilizada em breve. O protótipo pode ser visto [aqui](https://angular-crud-c4516.firebaseapp.com/).
+
+This project was generated with [Angular CLI] (https://github.com/angular/angular-cli) version 8.3.24
 
 ## Development server
 
