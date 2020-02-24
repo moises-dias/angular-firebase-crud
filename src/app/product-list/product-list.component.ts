@@ -19,8 +19,12 @@ export class ProductListComponent implements OnInit {
   onlySold: boolean = false;
   onlyForSale: boolean = false;
   productsList: Product[];
+  soldList: Product[];
+  forSaleList: Product[];
   displayedColumns: string[] = ['name', 'details', 'categories'];
   dataSource = new MatTableDataSource(this.productsList);
+  soldDataSource = new MatTableDataSource(this.soldList);
+  forSaleDataSource = new MatTableDataSource(this.forSaleList);
 
   nameFilter = new FormControl('');
   detailsFilter = new FormControl('');
@@ -57,10 +61,24 @@ export class ProductListComponent implements OnInit {
         const id = a.payload.doc.id;
         return { ...data, id } as Product;
       });
+
+      this.soldList = this.productsList.filter(p => (p.saleValue) != null);
+      this.forSaleList = this.productsList.filter(p => this.soldList.indexOf(p) < 0);
+
       this.dataSource = new MatTableDataSource(this.productsList);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.dataSource.filterPredicate = this.createFilter();
+
+      this.forSaleDataSource = new MatTableDataSource(this.forSaleList);
+      this.forSaleDataSource.sort = this.sort;
+      this.forSaleDataSource.paginator = this.paginator;
+      this.forSaleDataSource.filterPredicate = this.createFilter();
+
+      this.soldDataSource = new MatTableDataSource(this.soldList);
+      this.soldDataSource.sort = this.sort;
+      this.soldDataSource.paginator = this.paginator;
+      this.soldDataSource.filterPredicate = this.createFilter();
     });
 
     this.nameFilter.valueChanges
@@ -68,6 +86,8 @@ export class ProductListComponent implements OnInit {
         name => {
           this.filterValues.name = name;
           this.dataSource.filter = JSON.stringify(this.filterValues);
+          this.forSaleDataSource.filter = JSON.stringify(this.filterValues);
+          this.soldDataSource.filter = JSON.stringify(this.filterValues);
         }
       )
     this.detailsFilter.valueChanges
@@ -75,6 +95,8 @@ export class ProductListComponent implements OnInit {
         details => {
           this.filterValues.details = details;
           this.dataSource.filter = JSON.stringify(this.filterValues);
+          this.forSaleDataSource.filter = JSON.stringify(this.filterValues);
+          this.soldDataSource.filter = JSON.stringify(this.filterValues);
         }
       )
     this.categoriesFilter.valueChanges
@@ -82,6 +104,8 @@ export class ProductListComponent implements OnInit {
         categories => {
           this.filterValues.categories = categories;
           this.dataSource.filter = JSON.stringify(this.filterValues);
+          this.forSaleDataSource.filter = JSON.stringify(this.filterValues);
+          this.soldDataSource.filter = JSON.stringify(this.filterValues);
         }
       )
   }
@@ -89,15 +113,18 @@ export class ProductListComponent implements OnInit {
   openDialog(product: Product) {
     console.log(product)
     let dialogRef = this.dialog.open(ProductDialogComponent, { data: product });
+    console.log(this.forSaleList)
+    console.log(this.soldList)
+    console.log(this.productsList)
 
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log(`dialog result: ${result}`);
     // });
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  // applyFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
 
   update(product: Product) {
     this.productService.updateProduct(product);

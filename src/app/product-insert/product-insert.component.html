@@ -48,7 +48,7 @@
             <mat-step label="Purchase Info" formGroupName="1" [stepControl]="formArray?.get([1])">
                 <!-- -----Purchase Value----- -->
                 <mat-form-field class="form-element">
-                    <input matInput placeholder="Purchase Value" formControlName="purchaseValue">
+                    <input matInput placeholder="Purchase Value" formControlName="purchaseValue" required>
                 </mat-form-field>
                 <!-- -----Purchase Date----- -->
                 <mat-form-field class="form-element">
@@ -85,7 +85,7 @@
 
                     <!-- -----Sale Value----- -->
                     <mat-form-field class="form-element">
-                        <input matInput placeholder="Sale Value" formControlName="saleValue">
+                        <input matInput placeholder="Sale Value" formControlName="saleValue" pattern="^[0-9]+(\.[0-9]+)?$" [required]="panel.expanded">
                     </mat-form-field>
 
                     <!-- -----Purchaser Name----- -->

@@ -74,7 +74,7 @@ export class ProductInsertComponent implements OnInit {
           'details': [this.product ? this.product.details : null, null]
         }),
         this.formBuilder.group({
-          'purchaseValue': [this.product ? this.product.purchaseValue : null, null],
+          'purchaseValue': [this.product ? this.product.purchaseValue : null, [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]+)?$')]],
           'purchaseDate': [this.product ? this.product.purchaseDate : null, null],
         }),
         this.formBuilder.group({
