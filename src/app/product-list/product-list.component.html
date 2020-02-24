@@ -2,107 +2,113 @@
     <button mat-raised-button color="primary" routerLink="/product/new">Add Product</button>
 </div>
 
-<!-- <mat-form-field>
+
+<mat-tab-group>
+    <mat-tab label="For Sale">
+        <!-- <mat-form-field>
     <input (keyup)="applyFilter($event.target.value)" matInput placeholder='filter'>
 </mat-form-field> -->
-<h1>for sale</h1>
-<div class="mat-elevation-z8">
-    <mat-table [dataSource]="forSaleDataSource" matSort>
-        <!-- name Column -->
-        <ng-container matColumnDef="name">
-            <mat-header-cell mat-sort-header *matHeaderCellDef> name </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-        </ng-container>
+        <h1>for sale</h1>
+        <div class="mat-elevation-z8">
+            <mat-table [dataSource]="forSaleDataSource" matSort>
+                <!-- name Column -->
+                <ng-container matColumnDef="name">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                </ng-container>
 
-        <!-- details Column -->
-        <ng-container matColumnDef="details">
-            <mat-header-cell mat-sort-header *matHeaderCellDef> details </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.details}} </mat-cell>
-        </ng-container>
+                <!-- details Column -->
+                <ng-container matColumnDef="details">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> details </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.details}} </mat-cell>
+                </ng-container>
 
-        <!-- categories Column -->
-        <ng-container matColumnDef="categories">
-            <mat-header-cell mat-sort-header *matHeaderCellDef> categories </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.categories}} </mat-cell>
-        </ng-container>
+                <!-- categories Column -->
+                <ng-container matColumnDef="categories">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> categories </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.categories}} </mat-cell>
+                </ng-container>
 
-        <!-- name filter header -->
-        <ng-container matColumnDef="nameFilter">
-            <mat-header-cell *matHeaderCellDef>
-                <input placeholder='filter by name' matInput [formControl]="nameFilter">
-            </mat-header-cell>
-        </ng-container>
+                <!-- name filter header -->
+                <ng-container matColumnDef="nameFilter">
+                    <mat-header-cell *matHeaderCellDef>
+                        <input placeholder='filter by name' matInput [formControl]="nameFilter">
+                    </mat-header-cell>
+                </ng-container>
 
-        <!-- details filter header -->
-        <ng-container matColumnDef="detailsFilter">
-            <mat-header-cell *matHeaderCellDef>
-                <input placeholder='filter by details' matInput [formControl]="detailsFilter">
-            </mat-header-cell>
-        </ng-container>
+                <!-- details filter header -->
+                <ng-container matColumnDef="detailsFilter">
+                    <mat-header-cell *matHeaderCellDef>
+                        <input placeholder='filter by details' matInput [formControl]="detailsFilter">
+                    </mat-header-cell>
+                </ng-container>
 
-        <!-- categories filter header -->
-        <ng-container matColumnDef="categoriesFilter">
-            <mat-header-cell *matHeaderCellDef>
-                <input placeholder='filter by categories' matInput [formControl]="categoriesFilter">
-            </mat-header-cell>
-        </ng-container>
+                <!-- categories filter header -->
+                <ng-container matColumnDef="categoriesFilter">
+                    <mat-header-cell *matHeaderCellDef>
+                        <input placeholder='filter by categories' matInput [formControl]="categoriesFilter">
+                    </mat-header-cell>
+                </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-header-row *matHeaderRowDef="['nameFilter', 'detailsFilter', 'categoriesFilter']"></mat-header-row>
-        <mat-row (click)="openDialog(row)"
-            [ngStyle]="{'background-color':row.purchaserName !== null ? '#f4511e' : '#3498DB' }"
-            *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-header-row *matHeaderRowDef="['nameFilter', 'detailsFilter', 'categoriesFilter']"></mat-header-row>
+                <mat-row (click)="openDialog(row)"
+                    [ngStyle]="{'background-color':row.purchaserName !== null ? '#f4511e' : '#3498DB' }"
+                    *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </mat-tab>
+    <mat-tab label="Sold">
+        <h1>sold</h1>
+        <div class="mat-elevation-z8">
+            <mat-table [dataSource]="soldDataSource" matSort>
+                <!-- name Column -->
+                <ng-container matColumnDef="name">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> name </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                </ng-container>
 
-<h1>sold</h1>
-<div class="mat-elevation-z8">
-    <mat-table [dataSource]="soldDataSource" matSort>
-        <!-- name Column -->
-        <ng-container matColumnDef="name">
-            <mat-header-cell mat-sort-header *matHeaderCellDef> name </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-        </ng-container>
+                <!-- details Column -->
+                <ng-container matColumnDef="details">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> details </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.details}} </mat-cell>
+                </ng-container>
 
-        <!-- details Column -->
-        <ng-container matColumnDef="details">
-            <mat-header-cell mat-sort-header *matHeaderCellDef> details </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.details}} </mat-cell>
-        </ng-container>
+                <!-- categories Column -->
+                <ng-container matColumnDef="categories">
+                    <mat-header-cell mat-sort-header *matHeaderCellDef> categories </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.categories}} </mat-cell>
+                </ng-container>
 
-        <!-- categories Column -->
-        <ng-container matColumnDef="categories">
-            <mat-header-cell mat-sort-header *matHeaderCellDef> categories </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.categories}} </mat-cell>
-        </ng-container>
+                <!-- name filter header -->
+                <ng-container matColumnDef="nameFilter">
+                    <mat-header-cell *matHeaderCellDef>
+                        <input placeholder='filter by name' matInput [formControl]="nameFilter">
+                    </mat-header-cell>
+                </ng-container>
 
-        <!-- name filter header -->
-        <ng-container matColumnDef="nameFilter">
-            <mat-header-cell *matHeaderCellDef>
-                <input placeholder='filter by name' matInput [formControl]="nameFilter">
-            </mat-header-cell>
-        </ng-container>
+                <!-- details filter header -->
+                <ng-container matColumnDef="detailsFilter">
+                    <mat-header-cell *matHeaderCellDef>
+                        <input placeholder='filter by details' matInput [formControl]="detailsFilter">
+                    </mat-header-cell>
+                </ng-container>
 
-        <!-- details filter header -->
-        <ng-container matColumnDef="detailsFilter">
-            <mat-header-cell *matHeaderCellDef>
-                <input placeholder='filter by details' matInput [formControl]="detailsFilter">
-            </mat-header-cell>
-        </ng-container>
+                <!-- categories filter header -->
+                <ng-container matColumnDef="categoriesFilter">
+                    <mat-header-cell *matHeaderCellDef>
+                        <input placeholder='filter by categories' matInput [formControl]="categoriesFilter">
+                    </mat-header-cell>
+                </ng-container>
 
-        <!-- categories filter header -->
-        <ng-container matColumnDef="categoriesFilter">
-            <mat-header-cell *matHeaderCellDef>
-                <input placeholder='filter by categories' matInput [formControl]="categoriesFilter">
-            </mat-header-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-header-row *matHeaderRowDef="['nameFilter', 'detailsFilter', 'categoriesFilter']"></mat-header-row>
-        <mat-row (click)="openDialog(row)"
-            [ngStyle]="{'background-color':row.purchaserName !== null ? '#f4511e' : '#3498DB' }"
-            *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-header-row *matHeaderRowDef="['nameFilter', 'detailsFilter', 'categoriesFilter']"></mat-header-row>
+                <mat-row (click)="openDialog(row)"
+                    [ngStyle]="{'background-color':row.purchaserName !== null ? '#f4511e' : '#3498DB' }"
+                    *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </mat-tab>
+</mat-tab-group>

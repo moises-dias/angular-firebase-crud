@@ -48,6 +48,9 @@ export class ProductListComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  // @ViewChild(MatPaginator, { static: true }) paginator1: MatPaginator;
+  // @ViewChild(MatPaginator, { static: true }) paginator2: MatPaginator;
+  // @ViewChild(MatPaginator, { static: true }) paginator3: MatPaginator;
 
   constructor(
     private productService: ProductService,
@@ -65,10 +68,10 @@ export class ProductListComponent implements OnInit {
       this.soldList = this.productsList.filter(p => (p.saleValue) != null);
       this.forSaleList = this.productsList.filter(p => this.soldList.indexOf(p) < 0);
 
-      this.dataSource = new MatTableDataSource(this.productsList);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.filterPredicate = this.createFilter();
+      // this.dataSource = new MatTableDataSource(this.productsList);
+      // this.dataSource.sort = this.sort;
+      // this.dataSource.paginator = this.paginator3;
+      // this.dataSource.filterPredicate = this.createFilter();
 
       this.forSaleDataSource = new MatTableDataSource(this.forSaleList);
       this.forSaleDataSource.sort = this.sort;
@@ -76,10 +79,11 @@ export class ProductListComponent implements OnInit {
       this.forSaleDataSource.filterPredicate = this.createFilter();
 
       this.soldDataSource = new MatTableDataSource(this.soldList);
-      this.soldDataSource.sort = this.sort;
-      this.soldDataSource.paginator = this.paginator;
-      this.soldDataSource.filterPredicate = this.createFilter();
+      // this.soldDataSource.sort = this.sort;
+      // this.soldDataSource.paginator = this.paginator3;
+      // this.soldDataSource.filterPredicate = this.createFilter();
     });
+
 
     this.nameFilter.valueChanges
       .subscribe(
@@ -109,6 +113,26 @@ export class ProductListComponent implements OnInit {
         }
       )
   }
+
+  // ngAfterViewInit() {
+  //   this.forSaleDataSource.paginator = this.paginator1;
+  //   this.soldDataSource.paginator = this.paginator2;
+  // }
+
+  // _setDataSource(indexNumber) {
+  //   setTimeout(() => {
+  //     console.log(this.forSaleDataSource.paginator)
+  //     switch (indexNumber) {
+  //       case 0:
+  //         !this.forSaleDataSource.paginator ? this.forSaleDataSource.paginator = this.paginator1 : null;
+  //         break;
+  //       case 1:
+  //         !this.soldDataSource.paginator ? this.soldDataSource.paginator = this.paginator2 : null;
+  //     }
+  //   });
+  // }
+
+
 
   openDialog(product: Product) {
     console.log(product)

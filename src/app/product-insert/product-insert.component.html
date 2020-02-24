@@ -1,4 +1,6 @@
-
+<div>
+    <button mat-raised-button color="primary" routerLink="/products">Go back</button>
+</div>
 <div>
     <form [formGroup]="formGroup" (keydown.enter)="$event.preventDefault()"
         (ngSubmit)="onSubmit(formArray?.get([0]).value, formArray?.get([1]).value, formArray?.get([2]).value)"
