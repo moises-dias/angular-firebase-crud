@@ -5,13 +5,6 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
 
 @Component({
   selector: 'product-list',
@@ -20,21 +13,21 @@ export interface PeriodicElement {
 })
 
 export class ProductListComponent implements OnInit {
+
   resultsNumber: number = 10;
   onlySold: boolean = false;
   onlyForSale: boolean = false;
-  constructor(
-    private productService: ProductService,
-    public dialog: MatDialog
-  ) { }
-
   productsList: Product[];
-
-  displayedColumns: string[] = ['id', 'name', 'purchaseDate', 'saleValue'];
+  displayedColumns: string[] = ['name', 'details', 'categories'];
   dataSource = new MatTableDataSource(this.productsList);
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  constructor(
+    private productService: ProductService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.productService.getProducts().subscribe(actions => {
@@ -68,22 +61,6 @@ export class ProductListComponent implements OnInit {
 
   delete(id: string) {
     this.productService.deleteProduct(id);
-  }
-  logData(row) {
-    console.log(row);
-  }
-
-  checkSold(sold: boolean): boolean {
-    if (!sold && this.onlySold) {
-      return false
-    }
-    else if (sold && this.onlyForSale) {
-      return false
-    }
-    return true
-  }
-  showMe(row){
-    console.log(row.purchaserName)
   }
 
 }

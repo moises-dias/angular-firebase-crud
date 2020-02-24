@@ -15,6 +15,7 @@ import { ProductInsertComponent } from './product-insert/product-insert.componen
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { ProductDialogComponent } from './product-dialog/product-dialog.componen
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

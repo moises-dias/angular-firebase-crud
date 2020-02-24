@@ -1,9 +1,9 @@
-<button mat-button (click)="move()">Sair</button>
+
 <div>
     <form [formGroup]="formGroup" (keydown.enter)="$event.preventDefault()"
         (ngSubmit)="onSubmit(formArray?.get([0]).value, formArray?.get([1]).value, formArray?.get([2]).value)"
         class="form">
-        <mat-horizontal-stepper formArrayName="formArray" linear #stepper (selectionChange)="selectionChange($event)">
+        <mat-horizontal-stepper formArrayName="formArray" linear #stepper>
             <!-- -----PRODUCT INFO----- -->
             <mat-step label="Product Info" formGroupName="0" [stepControl]="formArray?.get([0])">
 
@@ -19,38 +19,29 @@
                 <!-- -----Name----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Name" formControlName="name" required>
-                    <!-- <mat-error
-                        *ngIf="!formArray?.get([0]).controls['name'].valid && formArray?.get([0]).controls['name'].touched">
-                        {{ titleAlert }}
-                    </mat-error> -->
                 </mat-form-field>
 
                 <!-- -----Details----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Details" formControlName="details">
-                    <!-- <mat-error
-                        *ngIf="!formArray?.get([0]).controls['details'].valid && formArray?.get([0]).controls['details'].touched">
-                        {{ titleAlert }}
-                    </mat-error> -->
                 </mat-form-field>
 
                 <!-- -----Categories----- -->
                 <mat-form-field class="form-element">
-                    <input #categoryName matInput placeholder="Categories" (keyup)="onKeydownEvent(categoryName.value, $event.keyCode)" formControlName="categories">
-                    <!-- <mat-error
-                        *ngIf="!formArray?.get([0]).controls['categories'].valid && formArray?.get([0]).controls['categories'].touched">
-                        {{ titleAlert }}
-                    </mat-error> -->
+                    <input #categoryName matInput placeholder="Categories"
+                        (keyup)="onKeydownEvent(categoryName.value, $event.keyCode)" formControlName="categories">
                 </mat-form-field>
                 <mat-list>
                     <mat-list-item *ngFor="let category of categoryList">
                         <ng-container *ngIf='category'>
-                            <button mat-raised-button color='primary' (click)="$event.preventDefault()">{{category}}</button><mat-icon (click)="move()">assessment</mat-icon>
+                            <button mat-raised-button color='primary'
+                                (click)="$event.preventDefault()">{{category}}</button>
+                            <mat-icon>assessment</mat-icon>
                         </ng-container>
                     </mat-list-item>
                 </mat-list>
                 {{ categoryName.value }}
-                
+
             </mat-step>
 
             <!-- -----PURCHASING INFO----- -->
@@ -58,33 +49,20 @@
                 <!-- -----Purchase Value----- -->
                 <mat-form-field class="form-element">
                     <input matInput placeholder="Purchase Value" formControlName="purchaseValue">
-                    <!-- <mat-error
-                        *ngIf="!formArray?.get([1]).controls['purchaseValue'].valid && formArray?.get([1]).controls['purchaseValue'].touched">
-                        {{ titleAlert }}
-                    </mat-error> -->
                 </mat-form-field>
                 <!-- -----Purchase Date----- -->
                 <mat-form-field class="form-element">
-                    <input matInput #inputTest placeholder="Purchase Date" [matDatepicker]='purchaseDate'
+                    <input matInput placeholder="Purchase Date" [matDatepicker]='purchaseDate'
                         formControlName="purchaseDate">
                     <mat-datepicker-toggle [for]='purchaseDate' matSuffix></mat-datepicker-toggle>
                     <mat-datepicker #purchaseDate></mat-datepicker>
-                    
-                    <!-- <mat-error
-                        *ngIf="!formArray?.get([1]).controls['purchaseDate'].valid && formArray?.get([1]).controls['purchaseDate'].touched">
-                        {{ titleAlert }}
-                    </mat-error> -->
                 </mat-form-field>
-                {{ inputTest.value }}
             </mat-step>
 
             <!-- -----SELLING INFO----- -->
             <mat-step label="Selling Info" formGroupName="2" [stepControl]="formArray?.get([2])">
 
-
-
-
-                <mat-expansion-panel #panel (opened)="opened()" (closed)="closed()">
+                <mat-expansion-panel #panel>
                     <mat-expansion-panel-header>
                         <mat-panel-title>
                             Sale Details
@@ -96,10 +74,6 @@
                     <!-- -----Sold----- -->
                     <mat-form-field class="form-element">
                         <input matInput placeholder="Sold" formControlName="sold">
-                        <!-- <mat-error
-                            *ngIf="!formArray?.get([2]).controls['sold'].valid && formArray?.get([2]).controls['sold'].touched">
-                            {{ titleAlert }}
-                        </mat-error> -->
                     </mat-form-field>
 
                     <!-- -----Sale Date----- -->
@@ -107,61 +81,29 @@
                         <input matInput placeholder="Sale Date" [matDatepicker]='saleDate' formControlName="saleDate">
                         <mat-datepicker-toggle [for]='saleDate' matSuffix></mat-datepicker-toggle>
                         <mat-datepicker #saleDate></mat-datepicker>
-                        <!-- <mat-error
-                            *ngIf="!formArray?.get([2]).controls['saleDate'].valid && formArray?.get([2]).controls['saleDate'].touched">
-                            {{ titleAlert }}
-                        </mat-error> -->
                     </mat-form-field>
 
                     <!-- -----Sale Value----- -->
                     <mat-form-field class="form-element">
                         <input matInput placeholder="Sale Value" formControlName="saleValue">
-                        <!-- <mat-error
-                            *ngIf="!formArray?.get([2]).controls['saleValue'].valid && formArray?.get([2]).controls['saleValue'].touched">
-                            {{ titleAlert }}
-                        </mat-error> -->
                     </mat-form-field>
 
                     <!-- -----Purchaser Name----- -->
                     <mat-form-field class="form-element">
-                        <input matInput placeholder="Purchaser Name" formControlName="purchaserName" [required]="panel.expanded">
-                        <!-- <mat-error
-                            *ngIf="!formArray?.get([2]).controls['purchaserName'].valid && formArray?.get([2]).controls['purchaserName'].touched">
-                            {{ titleAlert }}
-                        </mat-error> -->
+                        <input matInput placeholder="Purchaser Name" formControlName="purchaserName"
+                            [required]="panel.expanded">
                     </mat-form-field>
 
                     <!-- -----Purchaser Contacts----- -->
                     <mat-form-field class="form-element">
-                        <input matInput placeholder="Purchaser Contacts" formControlName="purchaserContacts" [required]="panel.expanded"><mat-icon matPrefix class="formIcon">mail</mat-icon>
-                        <!-- <mat-error
-                            *ngIf="!formArray?.get([2]).controls['purchaserContacts'].valid && formArray?.get([2]).controls['purchaserContacts'].touched">
-                            {{ titleAlert }}
-                        </mat-error> -->
-
-                        
-                        <!-- <mat-list>
-                            <mat-list-item>
-                                <input matInput placeholder="Purchaser Contacts" formControlName="purchaserContacts" [required]="panel.expanded"><mat-icon matSuffix>mail</mat-icon>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <input matInput placeholder="Purchaser Contacts" formControlName="purchaserContacts" [required]="panel.expanded"><mat-icon matSuffix>phone</mat-icon>
-                            </mat-list-item>
-                            <mat-list-item>
-                                <input matInput placeholder="Purchaser Contacts" formControlName="purchaserContacts" [required]="panel.expanded"><mat-icon matSuffix>link</mat-icon>
-                            </mat-list-item>
-
-                        </mat-list> -->
-                        
+                        <input matInput placeholder="Purchaser Contacts" formControlName="purchaserContacts"
+                            [required]="panel.expanded">
+                        <mat-icon matPrefix class="formIcon">mail</mat-icon>
                     </mat-form-field>
 
                     <!-- -----Sale Platforms----- -->
                     <mat-form-field class="form-element">
                         <input matInput placeholder="Sale Platforms" formControlName="salePlatforms">
-                        <!-- <mat-error
-                            *ngIf="!formArray?.get([2]).controls['salePlatforms'].valid && formArray?.get([2]).controls['salePlatforms'].touched">
-                            {{ titleAlert }}
-                        </mat-error> -->
                     </mat-form-field>
                 </mat-expansion-panel>
                 <hr>
@@ -172,120 +114,6 @@
                         Form</button>
                 </div>
             </mat-step>
-
-
-
-
-
-
-
-
-
-
-
-            <!-- <mat-form-field class="form-element">
-            <input matInput placeholder="Emailaddress" formControlName="email">
-            <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
-                {{ getErrorEmail() }}
-            </mat-error>
-        </mat-form-field> -->
-
-
-            <!-- <mat-form-field class="form-element">
-            <textarea matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="2"
-                matAutosizeMaxRows="5" formControlName="description"></textarea>
-            <mat-error *ngIf="!formGroup.controls['description'].valid && formGroup.controls['description'].touched">
-                Required field, must be between 5 and 10 characters.
-            </mat-error>
-        </mat-form-field> -->
-
-            <!-- <mat-form-field class="form-element">
-            <input matInput placeholder="Password" formControlName="password">
-            <mat-hint>Choose a password of at least eight characters, one uppercase letter and one number</mat-hint>
-            <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
-                {{ getErrorPassword() }}
-            </mat-error>
-        </mat-form-field> -->
-
-            <!-- <div class="form-element">
-                <button mat-raised-button color="primary" type="submit" class="button"
-                    [disabled]="!formGroup.valid">Submit
-                    Form</button>
-            </div> -->
         </mat-horizontal-stepper>
     </form>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-<!-- <nav>
-    <a routerLink="/products">products</a>
-</nav>
-
-
-
-<form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
-
-    <div>
-        <label for="id">id</label>
-        <input id="id" type="text" formControlName="id" disabled>
-    </div>
-    <div>
-        <label for="name">name</label>
-        <input #spy id="name" type="text" formControlName="name">
-    </div>
-    <div> {{ spy.className }}</div>
-    <div>
-        <label for="categories">categories</label>
-        <input id="categories" type="text" formControlName="categories">
-    </div>
-    <div>
-        <label for="purchaseValue">purchaseValue</label>
-        <input id="purchaseValue" type="text" formControlName="purchaseValue">
-    </div>
-    <div>
-        <label for="purchaseDate">purchaseDate</label>
-        <input id="purchaseDate" type="text" formControlName="purchaseDate">
-    </div>
-    <div>
-        <label for="purchaserName">purchaserName</label>
-        <input id="purchaserName" type="text" formControlName="purchaserName">
-    </div>
-    <div>
-        <label for="purchaserContacts">purchaserContacts</label>
-        <input id="purchaserContacts" type="text" formControlName="purchaserContacts">
-    </div>
-    <div>
-        <label for="saleValue">saleValue</label>
-        <input id="saleValue" type="text" formControlName="saleValue">
-    </div>
-    <div>
-        <label for="saleDate">saleDate</label>
-        <input id="saleDate" type="text" formControlName="saleDate">
-    </div>
-    <div>
-        <label for="salePlatforms">salePlatforms</label>
-        <input id="salePlatforms" type="text" formControlName="salePlatforms">
-    </div>
-    <div>
-        <label for="sold">sold</label>
-        <input id="sold" type="checkbox" formControlName="sold">
-    </div>
-    <div>
-        <label for="details">details</label>
-        <input id="details" type="text" formControlName="details">
-    </div>
-
-
-    <button class="button" type="submit">Finish</button>
-
-
-</form> -->

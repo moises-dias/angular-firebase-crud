@@ -4,7 +4,7 @@ import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/product.model';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 import { MatStepper } from '@angular/material';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
@@ -14,25 +14,24 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
   styleUrls: ['./product-insert.component.css'],
   providers: [{ provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true } }]
 })
+
 export class ProductInsertComponent implements OnInit {
-  isLinear = true;
+
   formGroup: FormGroup;
-
-  categoryList: string[] = [];
-
-  get formArray(): AbstractControl | null { return this.formGroup.get('formArray'); }
-
   titleAlert: string = 'This field is required';
+  categoryList: string[] = [];
+  product: Product;
+
   @ViewChild('stepper', { static: true }) stepper: MatStepper;
 
-  product: Product;
-  // productForm;
+  get formArray(): AbstractControl | null { return this.formGroup.get('formArray'); }
 
   constructor(
     private productService: ProductService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
@@ -44,42 +43,27 @@ export class ProductInsertComponent implements OnInit {
     this.createForm();
   }
 
-  getArray(){
+  // funcao teste
+  getArray() {
     return <FormArray>this.formGroup.get('formArray');
   }
-  myFunc(pos: string, val: string){
+  // funcao teste
+  myFunc(pos: string, val: string) {
     console.log((<FormArray>this.formGroup.get('formArray')).controls[0].value.id.touched)
     return pos + val;
   }
 
   onKeydownEvent(value: string, keyCode: number) {
     console.log(keyCode);
-    if(keyCode == 13) {
+    if (keyCode == 13) {
       this.categoryList.push(value);
       this.categoryList.sort();
       console.log(this.categoryList);
-      (<FormArray>this.formGroup.get('formArray')).controls[0].patchValue({categories:''})
+      (<FormArray>this.formGroup.get('formArray')).controls[0].patchValue({ categories: '' })
     }
   }
 
   createForm() {
-
-    // id
-    // name
-    // details
-    // categories
-
-    // purchase value
-    // purchase date
-
-
-    // sold {
-    // 	  sale value
-    // 	  sale date
-    // 	  sale platform
-    // 	  purchaser name
-    // 	  purchaser contacts
-    // }
 
     this.formGroup = this.formBuilder.group({
       formArray: this.formBuilder.array([
@@ -122,8 +106,11 @@ export class ProductInsertComponent implements OnInit {
   onSubmit(array1, array2, array3) {
     const formProduct: Product = { ...array1, ...array2, ...array3 }
     console.log(formProduct);
-    formProduct.categories=this.categoryList.toString();
+    formProduct.categories = this.categoryList.toString();
     this.categoryList = [];
+    formProduct.purchaseDate = this.datePipe.transform(formProduct.purchaseDate, 'yyyy-MM-dd');
+    formProduct.saleDate = this.datePipe.transform(formProduct.saleDate, 'yyyy-MM-dd');
+
     if (this.product) {
       this.update(formProduct)
     }
@@ -133,17 +120,6 @@ export class ProductInsertComponent implements OnInit {
     this.location.back();
   }
 
-  move() {
-    // this.stepper.selectedIndex = 1
-    console.log("test")
-  }
-  selectionChange(event) {
-  }
-  opened() {
-    console.log("open")
-  }
-  closed() {
-    console.log("closed")
-  }
+
 
 }
