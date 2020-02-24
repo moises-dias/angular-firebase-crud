@@ -56,3 +56,13 @@ table, th, td {
 .mat-row:hover {
 	opacity: 1
 }
+
+.filter {
+	display: block;
+}
+.header {
+	padding: 5px;
+}
+table {
+	width: 100%;
+  }

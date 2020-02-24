@@ -21,7 +21,7 @@ export class ProductInsertComponent implements OnInit {
   titleAlert: string = 'This field is required';
   categoryList: string[] = [];
   product: Product;
-
+  
   @ViewChild('stepper', { static: true }) stepper: MatStepper;
 
   get formArray(): AbstractControl | null { return this.formGroup.get('formArray'); }

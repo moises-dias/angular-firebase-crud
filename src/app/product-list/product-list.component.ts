@@ -4,6 +4,7 @@ import { Product } from 'src/app/product.model';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { MatDialog } from '@angular/material';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -20,6 +21,26 @@ export class ProductListComponent implements OnInit {
   productsList: Product[];
   displayedColumns: string[] = ['name', 'details', 'categories'];
   dataSource = new MatTableDataSource(this.productsList);
+
+  nameFilter = new FormControl('');
+  detailsFilter = new FormControl('');
+  categoriesFilter = new FormControl('');
+  filterValues = {
+    name: '',
+    details: '',
+    categories: ''
+  };
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function (data, filter): boolean {
+      let searchTerms = JSON.parse(filter);
+      return data.name.toLowerCase().indexOf(searchTerms.name) !== -1
+        && data.details.toString().toLowerCase().indexOf(searchTerms.details) !== -1
+        && data.categories.toLowerCase().indexOf(searchTerms.categories) !== -1;
+    }
+    return filterFunction;
+  }
+
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -39,7 +60,30 @@ export class ProductListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.productsList);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      this.dataSource.filterPredicate = this.createFilter();
     });
+
+    this.nameFilter.valueChanges
+      .subscribe(
+        name => {
+          this.filterValues.name = name;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+    this.detailsFilter.valueChanges
+      .subscribe(
+        details => {
+          this.filterValues.details = details;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
+    this.categoriesFilter.valueChanges
+      .subscribe(
+        categories => {
+          this.filterValues.categories = categories;
+          this.dataSource.filter = JSON.stringify(this.filterValues);
+        }
+      )
   }
 
   openDialog(product: Product) {
