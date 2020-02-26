@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { Product } from 'src/app/product.model';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
@@ -46,11 +46,11 @@ export class ProductListComponent implements OnInit {
   }
 
 
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  // @ViewChild(MatPaginator, { static: true }) paginator1: MatPaginator;
-  // @ViewChild(MatPaginator, { static: true }) paginator2: MatPaginator;
-  // @ViewChild(MatPaginator, { static: true }) paginator3: MatPaginator;
+  @ViewChild('soldTable', { static: true, read: MatSort }) soldSort: MatSort;
+  @ViewChild('forSaleTable', { static: true, read: MatSort }) forSaleSort: MatSort;
+  @ViewChild('forSalePaginator', { static: true, read: MatPaginator }) forSalePaginator: MatPaginator;
+  @ViewChild('soldPaginator', { static: true, read: MatPaginator }) soldPaginator: MatPaginator;
+  @ViewChild('forSaleNameFilter', { static: false, read: ElementRef }) forSaleNameFilter: ElementRef;
 
   constructor(
     private productService: ProductService,
@@ -68,20 +68,15 @@ export class ProductListComponent implements OnInit {
       this.soldList = this.productsList.filter(p => (p.saleValue) != null);
       this.forSaleList = this.productsList.filter(p => this.soldList.indexOf(p) < 0);
 
-      // this.dataSource = new MatTableDataSource(this.productsList);
-      // this.dataSource.sort = this.sort;
-      // this.dataSource.paginator = this.paginator3;
-      // this.dataSource.filterPredicate = this.createFilter();
-
       this.forSaleDataSource = new MatTableDataSource(this.forSaleList);
-      this.forSaleDataSource.sort = this.sort;
-      this.forSaleDataSource.paginator = this.paginator;
+      this.forSaleDataSource.sort = this.forSaleSort;
+      this.forSaleDataSource.paginator = this.forSalePaginator;
       this.forSaleDataSource.filterPredicate = this.createFilter();
 
       this.soldDataSource = new MatTableDataSource(this.soldList);
-      // this.soldDataSource.sort = this.sort;
-      // this.soldDataSource.paginator = this.paginator3;
-      // this.soldDataSource.filterPredicate = this.createFilter();
+      this.soldDataSource.sort = this.soldSort;
+      this.soldDataSource.paginator = this.soldPaginator;
+      this.soldDataSource.filterPredicate = this.createFilter();
     });
 
 
@@ -114,28 +109,8 @@ export class ProductListComponent implements OnInit {
       )
   }
 
-  // ngAfterViewInit() {
-  //   this.forSaleDataSource.paginator = this.paginator1;
-  //   this.soldDataSource.paginator = this.paginator2;
-  // }
-
-  // _setDataSource(indexNumber) {
-  //   setTimeout(() => {
-  //     console.log(this.forSaleDataSource.paginator)
-  //     switch (indexNumber) {
-  //       case 0:
-  //         !this.forSaleDataSource.paginator ? this.forSaleDataSource.paginator = this.paginator1 : null;
-  //         break;
-  //       case 1:
-  //         !this.soldDataSource.paginator ? this.soldDataSource.paginator = this.paginator2 : null;
-  //     }
-  //   });
-  // }
-
-
-
   openDialog(product: Product) {
-    console.log(product)
+    console.log(this.filterValues)
     let dialogRef = this.dialog.open(ProductDialogComponent, { data: product });
     console.log(this.forSaleList)
     console.log(this.soldList)
@@ -156,6 +131,17 @@ export class ProductListComponent implements OnInit {
 
   delete(id: string) {
     this.productService.deleteProduct(id);
+  }
+
+  resetSearchTerms() {
+    console.log(this.forSaleNameFilter.nativeElement.value)
+    this.forSaleNameFilter.nativeElement.value = ''
+    this.filterValues = {
+      name: '',
+      details: '',
+      categories: ''
+    };
+
   }
 
 }
