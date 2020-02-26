@@ -55,7 +55,7 @@ export class ProductInsertComponent implements OnInit {
 
   onKeydownEvent(value: string, keyCode: number) {
     console.log(keyCode);
-    if (keyCode == 13) {
+    if (keyCode == 13 && value != '') {
       this.categoryList.push(value);
       this.categoryList.sort();
       console.log(this.categoryList);

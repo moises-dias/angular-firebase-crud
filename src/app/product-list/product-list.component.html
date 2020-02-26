@@ -26,7 +26,9 @@
                 <!-- categories Column -->
                 <ng-container matColumnDef="categories">
                     <mat-header-cell mat-sort-header *matHeaderCellDef> categories </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.categories}} </mat-cell>
+                    <mat-cell *matCellDef="let element">
+                        <button *ngFor="let category of element.categories.split(',')" mat-raised-button color="primary">{{ category }}</button>
+                    </mat-cell>
                 </ng-container>
 
                 <!-- name filter header -->

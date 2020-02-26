@@ -85,6 +85,7 @@ export class ProductListComponent implements OnInit {
         name => {
           this.filterValues.name = name;
           this.dataSource.filter = JSON.stringify(this.filterValues);
+          // console.log(this.dataSource.filter)
           this.forSaleDataSource.filter = JSON.stringify(this.filterValues);
           this.soldDataSource.filter = JSON.stringify(this.filterValues);
         }
@@ -134,14 +135,9 @@ export class ProductListComponent implements OnInit {
   }
 
   resetSearchTerms() {
-    console.log(this.forSaleNameFilter.nativeElement.value)
-    this.forSaleNameFilter.nativeElement.value = ''
-    this.filterValues = {
-      name: '',
-      details: '',
-      categories: ''
-    };
-
+    this.nameFilter.setValue('');
+    this.categoriesFilter.setValue('');
+    this.detailsFilter.setValue('');
   }
 
 }
