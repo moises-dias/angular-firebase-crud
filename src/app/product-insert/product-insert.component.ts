@@ -21,6 +21,7 @@ export class ProductInsertComponent implements OnInit {
   titleAlert: string = 'This field is required';
   categoryList: string[] = [];
   product: Product;
+  myBool: boolean = false;
   
   @ViewChild('stepper', { static: true }) stepper: MatStepper;
 
@@ -54,8 +55,11 @@ export class ProductInsertComponent implements OnInit {
   }
 
   onKeydownEvent(value: string, keyCode: number) {
+    this.myBool = !this.myBool;
+    console.log(this.myBool)
+    console.log(this.categoryList.length)
     console.log(keyCode);
-    if (keyCode == 13 && value != '') {
+    if (keyCode == 13 && value != ''  && this.categoryList.indexOf(value) === -1) {
       this.categoryList.push(value);
       this.categoryList.sort();
       console.log(this.categoryList);
@@ -118,6 +122,18 @@ export class ProductInsertComponent implements OnInit {
       this.create(formProduct)
     }
     this.location.back();
+  }
+
+  stepChange(value){
+    if (value != '' && this.categoryList.indexOf(value) === -1) {
+      this.categoryList.push(value);
+      this.categoryList.sort();
+      console.log(this.categoryList);
+      (<FormArray>this.formGroup.get('formArray')).controls[0].patchValue({ categories: '' })
+    }
+  }
+  hasCategory(): boolean {
+    return this.categoryList.length > 0;
   }
 
 

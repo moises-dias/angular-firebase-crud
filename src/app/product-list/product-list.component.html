@@ -27,7 +27,8 @@
                 <ng-container matColumnDef="categories">
                     <mat-header-cell mat-sort-header *matHeaderCellDef> categories </mat-header-cell>
                     <mat-cell *matCellDef="let element">
-                        <button *ngFor="let category of element.categories.split(',')" mat-raised-button color="primary">{{ category }}</button>
+                        <button *ngFor="let category of element.categories.split(',')" mat-raised-button
+                            color="primary">{{ category }}</button>
                     </mat-cell>
                 </ng-container>
 
@@ -48,7 +49,16 @@
                 <!-- categories filter header -->
                 <ng-container matColumnDef="categoriesFilter">
                     <mat-header-cell *matHeaderCellDef>
-                        <input placeholder='filter by categories' matInput [formControl]="categoriesFilter">
+                        <!-- <input placeholder='filter by categories' matInput [formControl]="categoriesFilter"> -->
+                        <mat-form-field>
+                            <mat-label>filter by categories</mat-label>
+                            <mat-select multiple [formControl]="categoriesFilter">
+                                <mat-option *ngFor="let cat of allCategories" value='{{cat}}'>{{cat}}</mat-option>
+                                <!-- <mat-option value='2222'>2222</mat-option>
+                                <mat-option value='aaa'>aaa</mat-option>
+                                <mat-option value='d'>d</mat-option> -->
+                            </mat-select>
+                        </mat-form-field>
                     </mat-header-cell>
                 </ng-container>
 
@@ -80,7 +90,10 @@
                 <!-- categories Column -->
                 <ng-container matColumnDef="categories">
                     <mat-header-cell mat-sort-header *matHeaderCellDef> categories </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.categories}} </mat-cell>
+                    <mat-cell *matCellDef="let element">
+                        <button *ngFor="let category of element.categories.split(',')" mat-raised-button
+                            color="primary">{{ category }}</button>
+                    </mat-cell>
                 </ng-container>
 
                 <!-- name filter header -->
@@ -100,7 +113,13 @@
                 <!-- categories filter header -->
                 <ng-container matColumnDef="categoriesFilter">
                     <mat-header-cell *matHeaderCellDef>
-                        <input placeholder='filter by categories' matInput [formControl]="categoriesFilter">
+                        <!-- <input placeholder='filter by categories' matInput [formControl]="categoriesFilter"> -->
+                        <mat-form-field>
+                            <mat-label>filter by categories</mat-label>
+                            <mat-select multiple [formControl]="categoriesFilter">
+                                <mat-option *ngFor="let cat of allCategories" value='{{cat}}'>{{cat}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
                     </mat-header-cell>
                 </ng-container>
 
@@ -114,3 +133,19 @@
         </div>
     </mat-tab>
 </mat-tab-group>
+
+
+
+instruções:
+
+<ul>
+    <li>Clique em Add Product para adicionar um novo produto na lista.</li>
+    <li>Alterne entre produtos a venda e vendidos clicando nas guias 'For Sale' e 'Sold'</li>
+    <li>há duas formas para organizar a tabela: 
+        <ul>
+            <li>clicando nos textos 'name' 'details' e 'categories' no cabeçalho você organiza por ordem alfabética os produtos</li>
+            <li>digitando um texto nos campos de filtro ou selecionando as categorias em filter by name, details ou category</li>
+        </ul>
+    </li>
+    <li>Clique em um produto da tabela para ver seus detalhes</li>
+</ul>  

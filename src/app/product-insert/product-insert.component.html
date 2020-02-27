@@ -5,7 +5,8 @@
     <form [formGroup]="formGroup" (keydown.enter)="$event.preventDefault()"
         (ngSubmit)="onSubmit(formArray?.get([0]).value, formArray?.get([1]).value, formArray?.get([2]).value)"
         class="form">
-        <mat-horizontal-stepper formArrayName="formArray" linear #stepper>
+        <mat-horizontal-stepper formArrayName="formArray" linear #stepper
+            (selectionChange)="stepChange(categoryName.value)">
             <!-- -----PRODUCT INFO----- -->
             <mat-step label="Product Info" formGroupName="0" [stepControl]="formArray?.get([0])">
 
@@ -30,8 +31,9 @@
 
                 <!-- -----Categories----- -->
                 <mat-form-field class="form-element">
-                    <input #categoryName matInput placeholder="Categories"
+                    <input #categoryName matInput placeholder="Categories" [required]="!hasCategory()"
                         (keyup)="onKeydownEvent(categoryName.value, $event.keyCode)" formControlName="categories">
+                    <mat-hint>insert a category and press Enter</mat-hint>
                 </mat-form-field>
                 <mat-list>
                     <mat-list-item *ngFor="let category of categoryList">
@@ -42,8 +44,6 @@
                         </ng-container>
                     </mat-list-item>
                 </mat-list>
-                {{ categoryName.value }}
-
             </mat-step>
 
             <!-- -----PURCHASING INFO----- -->
@@ -87,7 +87,8 @@
 
                     <!-- -----Sale Value----- -->
                     <mat-form-field class="form-element">
-                        <input matInput placeholder="Sale Value" formControlName="saleValue" pattern="^[0-9]+(\.[0-9]+)?$" [required]="panel.expanded">
+                        <input matInput placeholder="Sale Value" formControlName="saleValue"
+                            pattern="^[0-9]+(\.[0-9]+)?$" [required]="panel.expanded">
                     </mat-form-field>
 
                     <!-- -----Purchaser Name----- -->
@@ -112,10 +113,17 @@
 
                 <div class="form-element">
                     <button mat-raised-button color="primary" type="submit" class="button"
-                        [disabled]="!formGroup.valid">Submit
-                        Form</button>
+                        [disabled]="!formGroup.valid">Submit Form</button>
                 </div>
             </mat-step>
         </mat-horizontal-stepper>
     </form>
 </div>
+
+Instruções:
+
+<ul>
+    <li>Preencha os campos conforme solicitado</li>
+    <li>Clique no dropdown 'sale details' apenas se você deseja inserir um produto já vendido</li>
+    <li>os campos obrigatórios estão marcados com um asterisco</li>
+</ul>

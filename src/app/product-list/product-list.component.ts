@@ -25,22 +25,33 @@ export class ProductListComponent implements OnInit {
   dataSource = new MatTableDataSource(this.productsList);
   soldDataSource = new MatTableDataSource(this.soldList);
   forSaleDataSource = new MatTableDataSource(this.forSaleList);
+  allCategories = [];
 
   nameFilter = new FormControl('');
   detailsFilter = new FormControl('');
-  categoriesFilter = new FormControl('');
+  categoriesFilter = new FormControl([]);
   filterValues = {
     name: '',
     details: '',
-    categories: ''
+    categories: []
   };
 
   createFilter(): (data: any, filter: string) => boolean {
     let filterFunction = function (data, filter): boolean {
       let searchTerms = JSON.parse(filter);
+      // console.log("hi");
+      // console.log("data.categories.toLowerCase()", data.categories.toLowerCase());
+      // console.log("searchTerms.categories", searchTerms.categories);
+      // console.log("typeof searchTerms.categories", typeof searchTerms.categories);
+      let prodCat = data.categories.split(',');
+      let filterCat = searchTerms.categories;
+      // console.log("prodCat", prodCat)
+      // console.log("filterCat", filterCat)
+      // console.log("----------------------")
       return data.name.toLowerCase().indexOf(searchTerms.name) !== -1
         && data.details.toString().toLowerCase().indexOf(searchTerms.details) !== -1
-        && data.categories.toLowerCase().indexOf(searchTerms.categories) !== -1;
+        // && data.categories.toLowerCase().indexOf(searchTerms.categories) !== -1;
+        && filterCat.every(cat => prodCat.indexOf(cat) !== -1);
     }
     return filterFunction;
   }
@@ -65,6 +76,10 @@ export class ProductListComponent implements OnInit {
         return { ...data, id } as Product;
       });
 
+      // this.allCategories = this.allCategories.concat(this.productsList.)
+      this.productsList.forEach(p => this.allCategories = this.allCategories.concat(p.categories.split(',')))
+      this.allCategories = [...new Set(this.allCategories)];
+      console.log(this.allCategories)
       this.soldList = this.productsList.filter(p => (p.saleValue) != null);
       this.forSaleList = this.productsList.filter(p => this.soldList.indexOf(p) < 0);
 
@@ -111,11 +126,11 @@ export class ProductListComponent implements OnInit {
   }
 
   openDialog(product: Product) {
-    console.log(this.filterValues)
+    // console.log(this.filterValues)
     let dialogRef = this.dialog.open(ProductDialogComponent, { data: product });
-    console.log(this.forSaleList)
-    console.log(this.soldList)
-    console.log(this.productsList)
+    // console.log(this.forSaleList)
+    // console.log(this.soldList)
+    // console.log(this.productsList)
 
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log(`dialog result: ${result}`);
@@ -136,7 +151,7 @@ export class ProductListComponent implements OnInit {
 
   resetSearchTerms() {
     this.nameFilter.setValue('');
-    this.categoriesFilter.setValue('');
+    this.categoriesFilter.setValue([]);
     this.detailsFilter.setValue('');
   }
 
