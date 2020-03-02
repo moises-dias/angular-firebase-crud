@@ -1,7 +1,8 @@
-<div>
-    <button mat-raised-button color="primary" routerLink="/product/new">Add Product</button>
+<div class="insert-container">
+    <div class='insert-button'>
+        <button class='button' mat-raised-button color="primary" routerLink="/product/new">Add Product</button>
+    </div>
 </div>
-
 
 <mat-tab-group (selectedTabChange)="resetSearchTerms()">
     <mat-tab label="For Sale">
@@ -76,9 +77,9 @@
         <div class="mat-elevation-z8">
             <mat-table #soldTable [dataSource]="soldDataSource" matSort>
                 <!-- name Column -->
-                <ng-container matColumnDef="name">
+                <ng-container class='name-column' matColumnDef="name">
                     <mat-header-cell mat-sort-header *matHeaderCellDef> name </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    <mat-cell  *matCellDef="let element"> {{element.name}} </mat-cell>
                 </ng-container>
 
                 <!-- details Column -->
@@ -90,7 +91,7 @@
                 <!-- categories Column -->
                 <ng-container matColumnDef="categories">
                     <mat-header-cell mat-sort-header *matHeaderCellDef> categories </mat-header-cell>
-                    <mat-cell *matCellDef="let element">
+                    <mat-cell class='categories-column' *matCellDef="let element">
                         <button *ngFor="let category of element.categories.split(',')" mat-raised-button
                             color="primary">{{ category }}</button>
                     </mat-cell>

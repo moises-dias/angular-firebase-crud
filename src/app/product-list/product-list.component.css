@@ -1,30 +1,3 @@
-.flex {
-	display: flex;
-}
-
-
-.flex-wrap {
-	flex-wrap: wrap;
-}
-
-.flex-item-1 {
-	flex: 1;
-}
-
-/* Flex Item */
-.item {
-	margin: 5px;
-	background: tomato;
-	text-align: center;
-	font-size: 1.5em;
-}
-
-.container {
-	max-width: 400px;
-	margin: 0 auto;
-	border: 1px solid #ccc;
-}
-
 h1 {
 	text-align: center;
 	margin: 20px 0 0 0;
@@ -32,37 +5,61 @@ h1 {
 	font-weight: normal;
 }
 
-body {
+/* body {
 	font-family: monospace;
 	color: #333;
-}
-.menu-top {
-    width: 100%;
-    height: 36px;
-    background-color: #3498DB;
-}
-table, th, td {
+} */
+/* table, th, td {
 	padding: 10px;
 	border: 1px solid black; 
 	border-collapse: collapse;
-}
+} */
 
 .mat-row {
-	/* background-color: #f4511e; */
 	opacity: 0.8;
 	transition: 0.3s;
-}
-	
+}	
+
 .mat-row:hover {
 	opacity: 1
 }
 
-.filter {
+/* .filter {
 	display: block;
 }
 .header {
 	padding: 5px;
-}
-table {
+} */
+/* table {
 	width: 100%;
-  }
+} */
+
+.insert-container {
+	display: flex;
+	justify-content: center;
+
+}
+
+.button {
+	background-color: lightblue;
+	flex-grow: 2;
+}
+
+.insert-button {
+	flex-grow: 2;
+	background-color: red;
+	display: flex;
+	justify-content: center;
+}
+
+.categories-column {
+	background-color: lightcoral;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.mat-column-name {
+	/* flex: 0 0 200px; */
+	color: red;
+}
+
